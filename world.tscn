@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://deknyv4y0bmnx"]
+[gd_scene load_steps=10 format=3 uid="uid://deknyv4y0bmnx"]
 
 [ext_resource type="Texture2D" uid="uid://c2q633o6tv2f0" path="res://debug.png" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://bqn3p1o4312am" path="res://zombie_spawner.gd" id="2_fj7yv"]
 [ext_resource type="Script" uid="uid://bpo7bldsu63g3" path="res://player_controller.gd" id="3_tlwt5"]
 [ext_resource type="ArrayMesh" uid="uid://eiqx334ur2nd" path="res://models/pistol_magazine.obj" id="4_aqk2v"]
+[ext_resource type="ArrayMesh" uid="uid://cp4or3mbrj0nd" path="res://models/pistol.obj" id="5_036b0"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gv5m4"]
 
@@ -49,3 +50,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 [node name="PistolMagazine" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14383852, 0.52388346, 1.9782019)
 mesh = ExtResource("4_aqk2v")
+
+[node name="Pistol" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8943071, 0.6395272, 1.7099916)
+mesh = ExtResource("5_036b0")
