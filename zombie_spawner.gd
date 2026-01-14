@@ -45,3 +45,4 @@ func _process(delta: float) -> void:
 				var zombie: Node3D = ZOMBIE_TSCN.instantiate()
 				add_child(zombie)
 				zombie.global_position = result.position
+				zombie.target = spawn_center
