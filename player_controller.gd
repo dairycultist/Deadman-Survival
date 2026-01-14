@@ -8,6 +8,7 @@ var camera_pitch := 0.0
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	$CameraAnchor/Backpack.visible = false
 
 func _process(delta: float) -> void:
 	
@@ -30,10 +31,12 @@ func _input(event):
 		
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			$CameraAnchor/Backpack.visible = true
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			$CameraAnchor/Backpack.visible = false
 	
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		
 		rotation.y += deg_to_rad(-event.relative.x * mouse_sensitivity)
 		

@@ -10,7 +10,12 @@
 	ramping up over time should challenge intermediate players who already are
 	comfortable in the early game, not the beginner players who don't know what
 	they're doing.
-- You can craft but you can't build, so you gotta constantly be on foot
+- You can craft but you can't build, so you're constantly on foot
+- Diegetic inventory system
+  - Opening your inventory makes a backpack appear in front of you with your items inside
+  - Separate slots for items (ammo, bandages, crafting items, etc) and weapons
+	- Only has a few slots (the game won't have too many items), making resource management important
+	- Limiting the player inventory discourages aggressive combat, encouraging tactical retreats and risk-reward scenarios
 
 and it has dog ahh graphics and booba and the game gets a cult following then we win,
 like make a really messy but playable gaem then clean it up
