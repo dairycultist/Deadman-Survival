@@ -13,6 +13,9 @@ albedo_color = Color(0.4246908, 0.6443634, 0.23700798, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
 top_level = true
 script = ExtResource("1_uiaus")
+aggro_range = 15.0
+deaggro_range = 25.0
+accel = 12
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
