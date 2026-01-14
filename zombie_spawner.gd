@@ -4,11 +4,13 @@ var ZOMBIE_TSCN: = preload("res://zombie.tscn")
 
 @export var spawning_surface: StaticBody3D
 @export var spawn_center: Node3D # typically the player
+
+@export_category("Spawn Config")
 @export_range(5, 100, 1, "or_greater") var min_spawn_distance: float = 25.0
 @export_range(5, 100, 1, "or_greater") var max_spawn_distance: float = 50.0
 
-# when a zombie is trying to spawn, if the number of zombies around the spawn
-# location is greater than max_density - 1, it won't spawn
+## When a zombie is trying to spawn, if the number of zombies around its spawn
+## location is greater than max_density - 1, it won't spawn.
 @export_range(0, 100, 1, "or_greater") var max_density: int = 3
 @export var spawn_rate_sec: int = 3
 
