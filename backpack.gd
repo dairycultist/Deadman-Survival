@@ -37,3 +37,6 @@ func attempt_store_item(item: Item) -> bool:
 				return true
 	
 	return false
+
+func get_selected_item() -> Item:
+	return null

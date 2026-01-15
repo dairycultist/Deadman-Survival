@@ -1,12 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://deknyv4y0bmnx"]
+[gd_scene load_steps=9 format=3 uid="uid://deknyv4y0bmnx"]
 
 [ext_resource type="Texture2D" uid="uid://c2q633o6tv2f0" path="res://debug.png" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://bqn3p1o4312am" path="res://zombie_spawner.gd" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://ctp0v8b07jg7a" path="res://player.tscn" id="3_036b0"]
-[ext_resource type="ArrayMesh" uid="uid://eiqx334ur2nd" path="res://models/pistol_magazine.obj" id="4_aqk2v"]
-[ext_resource type="ArrayMesh" uid="uid://cp4or3mbrj0nd" path="res://models/pistol.obj" id="5_036b0"]
-[ext_resource type="Script" uid="uid://l8s3ypcg5wml" path="res://item.gd" id="5_dwbse"]
-[ext_resource type="Shader" uid="uid://b4re70be6kgm1" path="res://item.gdshader" id="5_pkg7o"]
+[ext_resource type="PackedScene" uid="uid://bxbcos0w0waue" path="res://item_tscns/pistol.tscn" id="4_aqk2v"]
+[ext_resource type="PackedScene" uid="uid://b5et8cc5v2pmi" path="res://item_tscns/pistol_magazine.tscn" id="5_036b0"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gv5m4"]
 
@@ -16,26 +14,6 @@ uv1_scale = Vector3(50, 50, 50)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_f3sb7"]
 size = Vector2(100, 100)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_036b0"]
-size = Vector3(0.087890625, 0.4142456, 0.60009766)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pkg7o"]
-render_priority = 0
-shader = ExtResource("5_pkg7o")
-shader_parameter/color = Color(0.15127608, 0.15127608, 0.15127608, 1)
-shader_parameter/metallic = 0.0
-shader_parameter/highlight_amt = 0.0
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_dwbse"]
-size = Vector3(0.087890625, 0.37948608, 0.18231201)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gbfbk"]
-render_priority = 0
-shader = ExtResource("5_pkg7o")
-shader_parameter/color = Color(0.15127608, 0.15127608, 0.15127608, 1)
-shader_parameter/metallic = 0.0
-shader_parameter/highlight_amt = 0.0
 
 [node name="World" type="Node3D"]
 
@@ -60,29 +38,29 @@ spawn_rate_sec = 20
 
 [node name="Player" parent="." instance=ExtResource("3_036b0")]
 
-[node name="Pistol" type="RigidBody3D" parent="."]
-transform = Transform3D(0.15373817, -0.9332134, -0.3247726, 0.9851691, 0.11941779, 0.12321169, -0.07619918, -0.33889833, 0.9377321, -1.9888012, 0.8774416, -0.14924057)
-script = ExtResource("5_dwbse")
-is_weapon = true
+[node name="Pistol" parent="." instance=ExtResource("4_aqk2v")]
+transform = Transform3D(-4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 0.9999999, -1, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistol"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.011932373, -0.14331055)
-shape = SubResource("BoxShape3D_036b0")
+[node name="Pistol2" parent="." instance=ExtResource("4_aqk2v")]
+transform = Transform3D(-4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 0.9999999, -3, 0, 1)
 
-[node name="Mesh" type="MeshInstance3D" parent="Pistol"]
-material_override = SubResource("ShaderMaterial_pkg7o")
-mesh = ExtResource("5_036b0")
-skeleton = NodePath("../..")
+[node name="PistolMagazine" parent="." instance=ExtResource("5_036b0")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1.9203175, 0.033605244, 0.82986116)
 
-[node name="PistolMagazine" type="RigidBody3D" parent="."]
-transform = Transform3D(0.4268557, -0.40891108, 0.80658907, 0.6917652, 0.72212255, 0, -0.5824562, 0.5579702, 0.59111255, -1.5905125, 0.699589, 0)
-script = ExtResource("5_dwbse")
+[node name="PistolMagazine2" parent="." instance=ExtResource("5_036b0")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -2.4224234, 0.033605006, -0.1435703)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PistolMagazine"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.029312134, 0.024871826)
-shape = SubResource("BoxShape3D_dwbse")
+[node name="PistolMagazine3" parent="." instance=ExtResource("5_036b0")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -2.3684974, 0.033605006, -0.8427714)
 
-[node name="Mesh" type="MeshInstance3D" parent="PistolMagazine"]
-material_override = SubResource("ShaderMaterial_gbfbk")
-mesh = ExtResource("4_aqk2v")
-skeleton = NodePath("../..")
+[node name="PistolMagazine4" parent="." instance=ExtResource("5_036b0")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -2.3226748, 0.033605006, -1.7814509)
+
+[node name="PistolMagazine5" parent="." instance=ExtResource("5_036b0")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1.2989337, 0.033605006, -2.330778)
+
+[node name="PistolMagazine6" parent="." instance=ExtResource("5_036b0")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.08051944, 0.033605006, -3.1741347)
+
+[node name="PistolMagazine7" parent="." instance=ExtResource("5_036b0")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1.1837544, 0.033604767, -3.0681834)

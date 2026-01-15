@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5et8cc5v2pmi"]
+
+[ext_resource type="Script" uid="uid://l8s3ypcg5wml" path="res://item.gd" id="1_hsnpj"]
+[ext_resource type="Shader" uid="uid://b4re70be6kgm1" path="res://item.gdshader" id="2_bte3w"]
+[ext_resource type="ArrayMesh" uid="uid://eiqx334ur2nd" path="res://models/pistol_magazine.obj" id="3_ytp7k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dwbse"]
+size = Vector3(0.087890625, 0.37948608, 0.18231201)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gbfbk"]
+render_priority = 0
+shader = ExtResource("2_bte3w")
+shader_parameter/color = Color(0.15127608, 0.15127608, 0.15127608, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/highlight_amt = 0.0
+
+[node name="PistolMagazine" type="RigidBody3D"]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("1_hsnpj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.029312134, 0.024871826)
+shape = SubResource("BoxShape3D_dwbse")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_gbfbk")
+mesh = ExtResource("3_ytp7k")
+skeleton = NodePath("../..")

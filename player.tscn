@@ -7,7 +7,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aqk2v"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_4flbx"]
-size = Vector3(0.77, 1.05, 0.3)
+size = Vector3(1.1, 1.51, 0.3)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_4flbx")
@@ -31,25 +31,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
 mesh = SubResource("BoxMesh_4flbx")
 
 [node name="ItemSlot1" type="Node3D" parent="CameraAnchor/Backpack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2260282, 0.36247122, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3480632, 0.5458462, 0)
 
 [node name="ItemSlot2" type="Node3D" parent="CameraAnchor/Backpack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.226, 0.362, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.103965, 0.5453751, 0)
 
 [node name="ItemSlot3" type="Node3D" parent="CameraAnchor/Backpack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2260282, 0.0889709, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06394981, 0.131145, 0)
 
 [node name="ItemSlot4" type="Node3D" parent="CameraAnchor/Backpack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.226, 0.088499665, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3880784, 0.13067377, 0)
 
 [node name="ItemSlot5" type="Node3D" parent="CameraAnchor/Backpack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2260282, -0.1803987, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3519174, -0.21266997, 0)
 
 [node name="ItemSlot6" type="Node3D" parent="CameraAnchor/Backpack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.226, -0.18086994, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.100110814, -0.2131412, 0)
 
 [node name="WeaponSlot" type="Node3D" parent="CameraAnchor/Backpack"]
-transform = Transform3D(1, 0, 0, 0, 0.98638624, -0.16444509, 0, 0.16444509, 0.98638624, 0, -0.45454776, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9686525, -0.24841939, 0, 0.24841939, 0.9686525, 0, -0.7535819, 0)
 
 [node name="Crosshair" type="TextureRect" parent="."]
 anchors_preset = 8
