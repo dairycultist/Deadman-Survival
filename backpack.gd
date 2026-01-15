@@ -52,7 +52,8 @@ func get_selected_item() -> Item:
 		
 		var item_slot_pos: Vector2 = get_parent().unproject_position(slot.global_position)
 		
-		if mouse_pos.distance_to(item_slot_pos) < slot_select_radius and slot.get_child_count() == 1:
+		# use manhattan distance
+		if abs(mouse_pos.x - item_slot_pos.x) + abs(mouse_pos.y - item_slot_pos.y) < slot_select_radius and slot.get_child_count() == 1:
 			return slot.get_child(0)
 	
 	return null
