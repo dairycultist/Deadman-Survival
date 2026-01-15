@@ -27,16 +27,31 @@ func _process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	# looking at item
-	var query = PhysicsRayQueryParameters3D.create($CameraAnchor.global_position, $CameraAnchor.global_position - 30 * $CameraAnchor.global_transform.basis.z)
-	var result = get_world_3d().direct_space_state.intersect_ray(query)
+	# looking at item (in world or in inventory)
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 	
-	if result and result.collider is Item:
-		look_item = result.collider
-		look_item.set_highlight(true)
-	elif look_item != null:
-		look_item.set_highlight(false)
-		look_item = null
+		var query = PhysicsRayQueryParameters3D.create($CameraAnchor.global_position, $CameraAnchor.global_position - 30 * $CameraAnchor.global_transform.basis.z)
+		var result = get_world_3d().direct_space_state.intersect_ray(query)
+		
+		if result and result.collider is Item:
+			look_item = result.collider
+			look_item.set_highlight(true)
+		elif look_item != null:
+			look_item.set_highlight(false)
+			look_item = null
+	
+	else:
+		
+		var new_look_item: Item = $CameraAnchor/Backpack.get_selected_item()
+		
+		if new_look_item:
+			look_item = new_look_item
+			look_item.set_highlight(true)
+			Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+		elif look_item != null:
+			look_item.set_highlight(false)
+			look_item = null
+			Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 
 func _input(event):
 	
@@ -50,6 +65,10 @@ func _input(event):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			$CameraAnchor/Backpack.visible = false
 			$Crosshair.visible = true
+		
+		if look_item != null:
+			look_item.set_highlight(false)
+			look_item = null
 	
 	if event.is_action_pressed("interact"):
 		
