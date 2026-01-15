@@ -12,7 +12,7 @@ void fragment() {
 	ROUGHNESS = 0.5;
 	
 	vec4 f = INV_VIEW_MATRIX * vec4(VERTEX, 1.0);
-	float highlight = float(int((f.x + f.y + f.z + TIME * 0.1 + 1.0) * 20.0) % 2);
+	float highlight = float(int(abs(f.x + f.y + f.z + TIME * 0.1) * 20.0) % 2);
 	
 	ALBEDO = mix(color, vec3(1.,1.,1.), highlight * 0.1 * highlight_amt);
 }
