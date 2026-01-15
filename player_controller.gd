@@ -6,6 +6,8 @@ extends CharacterBody3D
 
 var camera_pitch := 0.0
 
+var look_item: Item = null
+
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$CameraAnchor/Backpack.visible = false
@@ -24,6 +26,17 @@ func _process(delta: float) -> void:
 	velocity = lerp(velocity, Vector3.ZERO, delta * drag)
 	
 	move_and_slide()
+	
+	# looking at item
+	var query = PhysicsRayQueryParameters3D.create($CameraAnchor.global_position, $CameraAnchor.global_position - 30 * $CameraAnchor.global_transform.basis.z)
+	var result = get_world_3d().direct_space_state.intersect_ray(query)
+	
+	if result and result.collider is Item:
+		look_item = result.collider
+		look_item.set_highlight(true)
+	elif look_item != null:
+		look_item.set_highlight(false)
+		look_item = null
 
 func _input(event):
 	
@@ -40,12 +53,9 @@ func _input(event):
 	
 	if event.is_action_pressed("interact"):
 		
-		var query = PhysicsRayQueryParameters3D.create($CameraAnchor.global_position, $CameraAnchor.global_position - 30 * $CameraAnchor.global_transform.basis.z)
-		var result = get_world_3d().direct_space_state.intersect_ray(query)
-		
-		# put item into inventory
-		if result and result.collider is Item:
-			$CameraAnchor/Backpack.attempt_store_item(result.collider)
+		if look_item:
+			if $CameraAnchor/Backpack.attempt_store_item(look_item):
+				look_item = null
 	
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		

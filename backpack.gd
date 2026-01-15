@@ -3,7 +3,8 @@ extends Node3D
 @export var item_slots: Array[Node3D]
 @export var weapon_slots: Array[Node3D]
 
-func attempt_store_item(item: Item):
+# returns true iff item was stored successfully
+func attempt_store_item(item: Item) -> bool:
 	
 	if item.is_weapon:
 		
@@ -11,12 +12,14 @@ func attempt_store_item(item: Item):
 			
 			if slot.get_child_count() == 0:
 				
+				item.set_highlight(false)
 				item.freeze = true
 				item.get_child(0).disabled = true
 				item.reparent(slot)
 				item.position = Vector3.ZERO
 				item.rotation = Vector3(0, -PI / 2, 0)
-				break
+				
+				return true
 		
 	else:
 	
@@ -24,9 +27,13 @@ func attempt_store_item(item: Item):
 			
 			if slot.get_child_count() == 0:
 				
+				item.set_highlight(false)
 				item.freeze = true
 				item.get_child(0).disabled = true
 				item.reparent(slot)
 				item.position = Vector3.ZERO
 				item.rotation = Vector3(0, -PI / 2, 0)
-				break
+				
+				return true
+	
+	return false

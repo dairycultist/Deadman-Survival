@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://deknyv4y0bmnx"]
+[gd_scene load_steps=15 format=3 uid="uid://deknyv4y0bmnx"]
 
 [ext_resource type="Texture2D" uid="uid://c2q633o6tv2f0" path="res://debug.png" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://bqn3p1o4312am" path="res://zombie_spawner.gd" id="2_fj7yv"]
@@ -20,7 +20,7 @@ size = Vector2(100, 100)
 [sub_resource type="BoxShape3D" id="BoxShape3D_036b0"]
 size = Vector3(0.087890625, 0.4142456, 0.60009766)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gbfbk"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pkg7o"]
 render_priority = 0
 shader = ExtResource("5_pkg7o")
 shader_parameter/color = Color(0.15127608, 0.15127608, 0.15127608, 1)
@@ -29,6 +29,13 @@ shader_parameter/highlight_amt = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dwbse"]
 size = Vector3(0.087890625, 0.37948608, 0.18231201)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gbfbk"]
+render_priority = 0
+shader = ExtResource("5_pkg7o")
+shader_parameter/color = Color(0.15127608, 0.15127608, 0.15127608, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/highlight_amt = 0.0
 
 [node name="World" type="Node3D"]
 
@@ -63,7 +70,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.011932373, -0.14331055)
 shape = SubResource("BoxShape3D_036b0")
 
 [node name="Mesh" type="MeshInstance3D" parent="Pistol"]
-material_override = SubResource("ShaderMaterial_gbfbk")
+material_override = SubResource("ShaderMaterial_pkg7o")
 mesh = ExtResource("5_036b0")
 skeleton = NodePath("../..")
 
