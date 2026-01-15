@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://deknyv4y0bmnx"]
+[gd_scene load_steps=12 format=3 uid="uid://deknyv4y0bmnx"]
 
 [ext_resource type="Texture2D" uid="uid://c2q633o6tv2f0" path="res://debug.png" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://bqn3p1o4312am" path="res://zombie_spawner.gd" id="2_fj7yv"]
@@ -18,6 +18,9 @@ size = Vector2(100, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_036b0"]
 size = Vector3(0.087890625, 0.4142456, 0.60009766)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dwbse"]
+size = Vector3(0.087890625, 0.37948608, 0.18231201)
 
 [node name="World" type="Node3D"]
 
@@ -42,18 +45,26 @@ spawn_rate_sec = 20
 
 [node name="Player" parent="." instance=ExtResource("3_036b0")]
 
-[node name="PistolMagazine" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14383852, 0.52388346, 1.9782019)
-mesh = ExtResource("4_aqk2v")
-
 [node name="Pistol" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.699589, 0)
+transform = Transform3D(0.15373817, -0.9332134, -0.3247726, 0.9851691, 0.11941779, 0.12321169, -0.07619918, -0.33889833, 0.9377321, -1.9888012, 0.8774416, -0.14924057)
 script = ExtResource("5_dwbse")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistol"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.011932373, -0.14331055)
+shape = SubResource("BoxShape3D_036b0")
 
 [node name="Mesh" type="MeshInstance3D" parent="Pistol"]
 mesh = ExtResource("5_036b0")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistol"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.011932373, -0.14331055)
-shape = SubResource("BoxShape3D_036b0")
+[node name="PistolMagazine" type="RigidBody3D" parent="."]
+transform = Transform3D(0.4268557, -0.40891108, 0.80658907, 0.6917652, 0.72212255, 0, -0.5824562, 0.5579702, 0.59111255, -1.5905125, 0.699589, 0)
+script = ExtResource("5_dwbse")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PistolMagazine"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.029312134, 0.024871826)
+shape = SubResource("BoxShape3D_dwbse")
+
+[node name="Mesh" type="MeshInstance3D" parent="PistolMagazine"]
+mesh = ExtResource("4_aqk2v")
+skeleton = NodePath("../..")

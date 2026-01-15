@@ -43,8 +43,9 @@ func _input(event):
 		var query = PhysicsRayQueryParameters3D.create($CameraAnchor.global_position, $CameraAnchor.global_position - 30 * $CameraAnchor.global_transform.basis.z)
 		var result = get_world_3d().direct_space_state.intersect_ray(query)
 		
+		# put item into inventory
 		if result and result.collider is Item:
-			print(result.collider)
+			$CameraAnchor/Backpack.attempt_store_item(result.collider)
 	
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		
