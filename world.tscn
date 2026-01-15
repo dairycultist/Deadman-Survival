@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://deknyv4y0bmnx"]
+[gd_scene load_steps=11 format=3 uid="uid://deknyv4y0bmnx"]
 
 [ext_resource type="Texture2D" uid="uid://c2q633o6tv2f0" path="res://debug.png" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://bqn3p1o4312am" path="res://zombie_spawner.gd" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://ctp0v8b07jg7a" path="res://player.tscn" id="3_036b0"]
 [ext_resource type="ArrayMesh" uid="uid://eiqx334ur2nd" path="res://models/pistol_magazine.obj" id="4_aqk2v"]
 [ext_resource type="ArrayMesh" uid="uid://cp4or3mbrj0nd" path="res://models/pistol.obj" id="5_036b0"]
+[ext_resource type="Script" uid="uid://l8s3ypcg5wml" path="res://item.gd" id="5_dwbse"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gv5m4"]
 
@@ -14,6 +15,9 @@ uv1_scale = Vector3(50, 50, 50)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_f3sb7"]
 size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_036b0"]
+size = Vector3(0.087890625, 0.4142456, 0.60009766)
 
 [node name="World" type="Node3D"]
 
@@ -42,6 +46,14 @@ spawn_rate_sec = 20
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14383852, 0.52388346, 1.9782019)
 mesh = ExtResource("4_aqk2v")
 
-[node name="Pistol" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8943071, 0.6395272, 1.7099916)
+[node name="Pistol" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.699589, 0)
+script = ExtResource("5_dwbse")
+
+[node name="Mesh" type="MeshInstance3D" parent="Pistol"]
 mesh = ExtResource("5_036b0")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistol"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.011932373, -0.14331055)
+shape = SubResource("BoxShape3D_036b0")

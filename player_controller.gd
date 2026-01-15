@@ -27,14 +27,24 @@ func _process(delta: float) -> void:
 
 func _input(event):
 	
-	if event.is_action_pressed("pause"):
+	if event.is_action_pressed("inventory"):
 		
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			$CameraAnchor/Backpack.visible = true
+			$Crosshair.visible = false
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			$CameraAnchor/Backpack.visible = false
+			$Crosshair.visible = true
+	
+	if event.is_action_pressed("interact"):
+		
+		var query = PhysicsRayQueryParameters3D.create($CameraAnchor.global_position, $CameraAnchor.global_position - 30 * $CameraAnchor.global_transform.basis.z)
+		var result = get_world_3d().direct_space_state.intersect_ray(query)
+		
+		if result and result.collider is Item:
+			print(result.collider)
 	
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		
