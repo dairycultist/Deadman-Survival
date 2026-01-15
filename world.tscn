@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://deknyv4y0bmnx"]
+[gd_scene load_steps=14 format=3 uid="uid://deknyv4y0bmnx"]
 
 [ext_resource type="Texture2D" uid="uid://c2q633o6tv2f0" path="res://debug.png" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://bqn3p1o4312am" path="res://zombie_spawner.gd" id="2_fj7yv"]
@@ -6,6 +6,7 @@
 [ext_resource type="ArrayMesh" uid="uid://eiqx334ur2nd" path="res://models/pistol_magazine.obj" id="4_aqk2v"]
 [ext_resource type="ArrayMesh" uid="uid://cp4or3mbrj0nd" path="res://models/pistol.obj" id="5_036b0"]
 [ext_resource type="Script" uid="uid://l8s3ypcg5wml" path="res://item.gd" id="5_dwbse"]
+[ext_resource type="Shader" uid="uid://b4re70be6kgm1" path="res://item.gdshader" id="5_pkg7o"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gv5m4"]
 
@@ -18,6 +19,13 @@ size = Vector2(100, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_036b0"]
 size = Vector3(0.087890625, 0.4142456, 0.60009766)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gbfbk"]
+render_priority = 0
+shader = ExtResource("5_pkg7o")
+shader_parameter/color = Color(0.15127608, 0.15127608, 0.15127608, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/highlight_amt = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dwbse"]
 size = Vector3(0.087890625, 0.37948608, 0.18231201)
@@ -55,6 +63,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.011932373, -0.14331055)
 shape = SubResource("BoxShape3D_036b0")
 
 [node name="Mesh" type="MeshInstance3D" parent="Pistol"]
+material_override = SubResource("ShaderMaterial_gbfbk")
 mesh = ExtResource("5_036b0")
 skeleton = NodePath("../..")
 
@@ -67,5 +76,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.029312134, 0.024871826)
 shape = SubResource("BoxShape3D_dwbse")
 
 [node name="Mesh" type="MeshInstance3D" parent="PistolMagazine"]
+material_override = SubResource("ShaderMaterial_gbfbk")
 mesh = ExtResource("4_aqk2v")
 skeleton = NodePath("../..")
