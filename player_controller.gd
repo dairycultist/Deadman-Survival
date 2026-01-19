@@ -75,17 +75,17 @@ func _process(delta: float) -> void:
 		
 		var rect: Rect2 = $Camera.get_item_ssbb(look_item)
 		
-		$ItemHover.visible  = true
 		$ItemHover.position = rect.position
 		$ItemHover.size     = rect.size
+		$ItemHover.visible  = true
 		
-		$ItemTooltip.visible  = true
-		$ItemTooltip.position = rect.position + Vector2(rect.size.x, 0.0)
+		$ItemTooltip.position  = rect.position + Vector2(rect.size.x, 0.0)
 		$ItemTooltip/Text.text = "[font_size=28][color=white][b]" + look_item.item_name + "[/b][br][/color][color=gray][i]" + look_item.item_description + "[/i][/color][/font_size]"
-		$ItemTooltip.size = $ItemTooltip/Text.size + Vector2(20.0, 20.0)
+		$ItemTooltip.size      = $ItemTooltip/Text.size + Vector2(20.0, 20.0)
+		$ItemTooltip.visible   = true
 		
 	else:
-		$ItemHover.visible = false
+		$ItemHover.visible   = false
 		$ItemTooltip.visible = false
 
 func _input(event):
