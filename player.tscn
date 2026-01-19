@@ -20,9 +20,13 @@ shape = SubResource("CapsuleShape3D_aqk2v")
 [node name="CameraAnchor" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
+[node name="HoldAnchor" type="Node3D" parent="CameraAnchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37, -0.3, -0.49)
+
 [node name="Backpack" type="Node3D" parent="CameraAnchor" node_paths=PackedStringArray("item_slots", "weapon_slots")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3841858e-07, -0.030638933, -1.3227192)
 script = ExtResource("2_onrkg")
+slot_select_radius = 65.0
 item_slots = [NodePath("ItemSlot1"), NodePath("ItemSlot2"), NodePath("ItemSlot3"), NodePath("ItemSlot4"), NodePath("ItemSlot5"), NodePath("ItemSlot6")]
 weapon_slots = [NodePath("WeaponSlot")]
 
