@@ -58,17 +58,16 @@ func _process(delta: float) -> void:
 		if new_look_item:
 			
 			if look_item != new_look_item:
+				
 				if look_item:
 					look_item.set_highlight(false)
 				look_item = new_look_item
 				look_item.set_highlight(true)
-				Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 			
 		elif look_item != null:
 			
 			look_item.set_highlight(false)
 			look_item = null
-			Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	
 	# ItemHover and ItemTooltip display
 	if look_item:
@@ -79,7 +78,7 @@ func _process(delta: float) -> void:
 		$ItemHover.size     = rect.size
 		$ItemHover.visible  = true
 		
-		$ItemTooltip.position  = rect.position + Vector2(rect.size.x, 0.0)
+		$ItemTooltip.position  = rect.position + Vector2(rect.size.x + $ItemHover.border_width / 2, -$ItemHover.border_width / 2)
 		$ItemTooltip/Text.text = "[font_size=28][color=white][b]" + look_item.item_name + "[/b][br][/color][color=gray][i]" + look_item.item_description + "[/i][/color][/font_size]"
 		$ItemTooltip.size      = $ItemTooltip/Text.size + Vector2(20.0, 20.0)
 		$ItemTooltip.visible   = true
