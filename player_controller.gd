@@ -1,11 +1,11 @@
 extends CharacterBody3D
 
-@export var mouse_sensitivity := 0.3
-@export var interact_range := 10.0
+@export var mouse_sensitivity: float = 0.3
+@export var interact_range: float = 2.5
 
 @export_category("Movement")
-@export var drag := 8
-@export var accel := 50
+@export var drag: float = 8
+@export var accel: float = 50
 
 var camera_pitch := 0.0
 
