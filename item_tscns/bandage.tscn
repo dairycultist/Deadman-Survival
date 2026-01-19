@@ -21,6 +21,8 @@ shader_parameter/highlight_amt = 0.0
 
 [node name="Bandage" type="RigidBody3D"]
 script = ExtResource("1_pcw5p")
+item_name = "Bandage"
+item_description = "Heals a small amount at a quick rate."
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_pcw5p")

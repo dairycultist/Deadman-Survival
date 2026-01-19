@@ -2,6 +2,8 @@ extends RigidBody3D
 class_name Item
 
 @export var is_weapon: bool = false
+@export var item_name: String = "unnamed"
+@export var item_description: String = "No description."
 
 func _ready() -> void:
 	

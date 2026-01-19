@@ -76,3 +76,25 @@ offset_bottom = 40.0
 border_color = Color(1, 1, 1, 1)
 border_width = 5.0
 editor_only = false
+
+[node name="ItemTooltip" type="ColorRect" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -128.5
+offset_right = 500.0
+offset_bottom = 128.5
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5764706)
+
+[node name="Text" type="RichTextLabel" parent="ItemTooltip"]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 150.0
+offset_bottom = 78.0
+bbcode_enabled = true
+text = "[font_size=24][color=white][b]Name[/b][br][/color][color=gray][i]Description.[/i][/color][/font_size]"
+fit_content = true
+autowrap_mode = 0

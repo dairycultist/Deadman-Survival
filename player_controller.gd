@@ -70,13 +70,23 @@ func _process(delta: float) -> void:
 			look_item = null
 			Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	
+	# ItemHover and ItemTooltip display
 	if look_item:
-		$ItemHover.visible = true
+		
 		var rect: Rect2 = $Camera.get_item_ssbb(look_item)
+		
+		$ItemHover.visible  = true
 		$ItemHover.position = rect.position
-		$ItemHover.size = rect.size
+		$ItemHover.size     = rect.size
+		
+		$ItemTooltip.visible  = true
+		$ItemTooltip.position = rect.position + Vector2(rect.size.x, 0.0)
+		$ItemTooltip/Text.text = "[font_size=28][color=white][b]" + look_item.item_name + "[/b][br][/color][color=gray][i]" + look_item.item_description + "[/i][/color][/font_size]"
+		$ItemTooltip.size = $ItemTooltip/Text.size + Vector2(20.0, 20.0)
+		
 	else:
 		$ItemHover.visible = false
+		$ItemTooltip.visible = false
 
 func _input(event):
 	
