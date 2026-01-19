@@ -24,6 +24,6 @@ like make a really messy but playable gaem then clean it up
 
 Stuff to add BEFORE a map:
 - Gunplay (shooting, reloading, defeating zombies)
-- Inventory and items (picking up from the ground, holding, dropping; ammo is pulled from the inventory)
+- Inventory and items (holding; ammo is pulled from the inventory)
   - I don't think we need chests; Base building is not a thing and looting can just be from items placed in the world
 - Player health

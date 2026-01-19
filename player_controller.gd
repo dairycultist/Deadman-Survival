@@ -13,6 +13,7 @@ var look_item: Item = null
 var held_item: Item = null
 
 func _ready() -> void:
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$CameraAnchor/Backpack.visible = false
 
@@ -98,6 +99,8 @@ func _input(event):
 		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 			
 			if look_item:
+				
+				#held_item
 				print("Attempting to equip: " + str(look_item))
 	
 	elif event.is_action_pressed("alt_fire"): # drop
