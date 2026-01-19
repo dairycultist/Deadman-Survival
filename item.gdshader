@@ -16,5 +16,5 @@ void fragment() {
 	vec4 f = INV_VIEW_MATRIX * vec4(VERTEX, 1.0);
 	float highlight = abs(sin(TIME * 5.0));
 	
-	ALBEDO = mix(texture(tex, UV).rgb * color, vec3(1.,1.,1.), highlight * 0.1 * highlight_amt);
+	ALBEDO = min(texture(tex, UV).rgb * color + highlight * 0.2 * highlight_amt, vec3(1.0, 1.0, 1.0));
 }

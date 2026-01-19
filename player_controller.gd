@@ -15,7 +15,7 @@ var held_item: Item = null
 func _ready() -> void:
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	$CameraAnchor/Backpack.visible = false
+	$Camera/Backpack.visible = false
 
 func _process(delta: float) -> void:
 	
@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 	# looking at item (in world or in inventory)
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 	
-		var query = PhysicsRayQueryParameters3D.create($CameraAnchor.global_position, $CameraAnchor.global_position - interact_range * $CameraAnchor.global_transform.basis.z)
+		var query = PhysicsRayQueryParameters3D.create($Camera.global_position, $Camera.global_position - interact_range * $Camera.global_transform.basis.z)
 		var result = get_world_3d().direct_space_state.intersect_ray(query)
 		
 		if result and result.collider is Item:
@@ -53,7 +53,7 @@ func _process(delta: float) -> void:
 	
 	else:
 		
-		var new_look_item: Item = $CameraAnchor/Backpack.get_selected_item()
+		var new_look_item: Item = $Camera/Backpack.get_selected_item()
 		
 		if new_look_item:
 			
@@ -69,6 +69,14 @@ func _process(delta: float) -> void:
 			look_item.set_highlight(false)
 			look_item = null
 			Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	
+	if look_item:
+		$ItemHover.visible = true
+		var rect: Rect2 = $Camera.get_item_ssbb(look_item)
+		$ItemHover.position = rect.position
+		$ItemHover.size = rect.size
+	else:
+		$ItemHover.visible = false
 
 func _input(event):
 	
@@ -76,11 +84,11 @@ func _input(event):
 		
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			$CameraAnchor/Backpack.visible = true
+			$Camera/Backpack.visible = true
 			$Crosshair.visible = false
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			$CameraAnchor/Backpack.visible = false
+			$Camera/Backpack.visible = false
 			$Crosshair.visible = true
 		
 		if look_item != null:
@@ -91,7 +99,7 @@ func _input(event):
 		
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			
-			if look_item and $CameraAnchor/Backpack.attempt_store_item(look_item):
+			if look_item and $Camera/Backpack.attempt_store_item(look_item):
 				look_item = null
 		
 	elif event.is_action_pressed("fire"): # equip
@@ -100,7 +108,7 @@ func _input(event):
 			
 			if look_item:
 				
-				#held_item
+				#TODO held_item
 				print("Attempting to equip: " + str(look_item))
 	
 	elif event.is_action_pressed("alt_fire"): # drop
@@ -116,4 +124,4 @@ func _input(event):
 		
 		rotation.y += deg_to_rad(-event.relative.x * mouse_sensitivity)
 		camera_pitch = clampf(camera_pitch - event.relative.y * mouse_sensitivity, -90, 90)
-		$CameraAnchor.rotation.x = deg_to_rad(camera_pitch)
+		$Camera.rotation.x = deg_to_rad(camera_pitch)
