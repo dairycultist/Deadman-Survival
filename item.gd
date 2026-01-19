@@ -19,5 +19,11 @@ func set_highlight(value: bool):
 func mesh():
 	return $Mesh
 
+func set_rigidbody(value: bool):
+
+	set_highlight(false)
+	freeze = not value
+	get_child(0).disabled = not value # collider
+
 func process_when_held(_player: Node3D, _backpack: Node3D):
 	pass

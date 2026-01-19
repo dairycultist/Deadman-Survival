@@ -47,9 +47,7 @@ func attempt_store_item(item: Item) -> bool:
 			
 			if slot.get_child_count() == 0:
 				
-				item.set_highlight(false)
-				item.freeze = true
-				item.get_child(0).disabled = true
+				item.set_rigidbody(false)
 				item.reparent(slot)
 				item.position = Vector3.ZERO
 				item.rotation = Vector3(0, -PI / 2, 0)
@@ -62,9 +60,7 @@ func attempt_store_item(item: Item) -> bool:
 			
 			if slot.get_child_count() == 0:
 				
-				item.set_highlight(false)
-				item.freeze = true
-				item.get_child(0).disabled = true
+				item.set_rigidbody(false)
 				item.reparent(slot)
 				item.position = Vector3.ZERO
 				item.rotation = Vector3(0, -PI / 2, 0)

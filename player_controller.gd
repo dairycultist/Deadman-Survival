@@ -109,9 +109,7 @@ func _input(event):
 			
 			if look_item:
 				
-				look_item.set_highlight(false)
-				look_item.freeze = false
-				look_item.get_child(0).disabled = false
+				look_item.set_rigidbody(true)
 				look_item.reparent(get_tree().root.get_child(0))
 	
 	elif event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
