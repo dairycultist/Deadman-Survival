@@ -26,7 +26,6 @@ script = ExtResource("1_pcw5p")
 shape = SubResource("CylinderShape3D_pcw5p")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_mui8a")
 mesh = ExtResource("1_1mj4e")
 skeleton = NodePath("../..")

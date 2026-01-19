@@ -16,5 +16,8 @@ func set_highlight(value: bool):
 	# Change the albedo color property
 	$Mesh.material_override.set("shader_parameter/highlight_amt", 1.0 if value else 0.0)
 
+func mesh():
+	return $Mesh
+
 func process_when_held(_player: Node3D, _backpack: Node3D):
 	pass
