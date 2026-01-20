@@ -52,14 +52,22 @@ func process_aggroed(delta: float) -> void:
 	
 	move_and_slide()
 	
+	# random idle sound
+	if not $Audio.playing and randi() % 2000 == 0:
+		$Audio.stream = idle_sound
+		$Audio.play()
+	
+	# attack target
 	if attack_cooldown <= 0.0:
 		
 		# attack if close enough
 		if target.global_position.distance_to(global_position) < 1.5:
-			target.change_health(-5)
+			
+			target.change_health(-randi_range(7, 12)) # I love hardcoding values
+			attack_cooldown = randf_range(0.8, 1.0)
+			
 			$Audio.stream = attack_sound
 			$Audio.play()
-			attack_cooldown = 1.0
 		
 	else:
 		attack_cooldown -= delta
