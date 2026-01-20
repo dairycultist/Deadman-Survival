@@ -18,7 +18,7 @@ shader_parameter/highlight_amt = 0.0
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_hsnpj")
 item_name = "Pistol Magazine"
-item_description = "Contains ammo for a pistol."
+item_description = "Contains 15 rounds of pistol ammunition."
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.029312134, 0.024871826)
