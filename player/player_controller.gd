@@ -13,7 +13,8 @@ var camera_pitch := 0.0
 
 var look_item: Item = null
 
-var hp_animation_fac := 0.0
+var equip_animation_fac := 0.0 # item raising to position, also prevents processing right away
+var hp_animation_fac := 0.0    # cool fade + shake effect
 
 func get_camera() -> Camera3D:
 	return $Camera
@@ -49,15 +50,28 @@ func _process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	# process equipped item
+	# equipped item
 	if $Camera/HoldAnchor.get_child_count() == 1:
-		$Camera/HoldAnchor.get_child(0).process_when_held(self)
+		
+		# move bob animation
+		$Camera/HoldAnchor.get_child(0).position.y = sin(Time.get_ticks_msec() * 0.02) * velocity.length() * 0.002
+		
+		# equip animation
+		$Camera/HoldAnchor.get_child(0).position.y += -equip_animation_fac * equip_animation_fac * 0.5
+		
+		if equip_animation_fac - delta * 4.0 > 0.0:
+			equip_animation_fac -= delta * 4.0 # decrease at 240 bpm
+		else:
+			equip_animation_fac = 0.0
+			
+			# process equipped item
+			$Camera/HoldAnchor.get_child(0).process_when_held(self)
 	
 	# hp hurt animation
 	$HealthLabel.modulate = Color(1.0, 1.0 - hp_animation_fac * hp_animation_fac, 1.0 - hp_animation_fac, 1.0)
 	$HealthLabel.position.x = sin(hp_animation_fac) * hp_animation_fac * 10.0
 	
-	if hp_animation_fac > 0.0:
+	if hp_animation_fac - delta * 2.666 > 0.0:
 		hp_animation_fac -= delta * 2.666 # decrease at 160 bpm
 	else:
 		hp_animation_fac = 0.0
@@ -156,6 +170,9 @@ func _input(event):
 				look_item.reparent($Camera/HoldAnchor)
 				look_item.position = Vector3.ZERO
 				look_item.rotation = Vector3(0, 0, 0)
+				
+				# start equip animation
+				equip_animation_fac = 1.0
 	
 	elif event.is_action_pressed("alt_fire"): # drop
 		
