@@ -15,6 +15,7 @@ var look_item: Item = null
 
 var equip_animation_fac := 0.0 # item raising to position, also prevents processing right away
 var hp_animation_fac := 0.0    # cool fade + shake effect
+var hp_animation_is_heal := true
 
 func get_camera() -> Camera3D:
 	return $Camera
@@ -26,8 +27,9 @@ func change_health(amt: int):
 	super.change_health(amt)
 	$HealthLabel.text = str(_health) + "/100 HP"
 	
-	if amt < 0:
+	if amt != 0:
 		hp_animation_fac = 1.0
+		hp_animation_is_heal = amt > 0
 
 func _ready() -> void:
 	super._ready()
@@ -67,8 +69,11 @@ func _process(delta: float) -> void:
 			# process equipped item
 			$Camera/HoldAnchor.get_child(0).process_when_held(self)
 	
-	# hp hurt animation
-	$HealthLabel.modulate = Color(1.0, 1.0 - hp_animation_fac * hp_animation_fac, 1.0 - hp_animation_fac, 1.0)
+	# hp heal/hurt animation
+	if hp_animation_is_heal:
+		$HealthLabel.modulate = Color(1.0 - hp_animation_fac, 1.0, 1.0 - hp_animation_fac * hp_animation_fac, 1.0)
+	else:
+		$HealthLabel.modulate = Color(1.0, 1.0 - hp_animation_fac * hp_animation_fac, 1.0 - hp_animation_fac, 1.0)
 	$HealthLabel.position.x = sin(hp_animation_fac) * hp_animation_fac * 10.0
 	
 	if hp_animation_fac - delta * 2.666 > 0.0:
