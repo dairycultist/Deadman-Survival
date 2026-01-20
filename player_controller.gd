@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@onready var ROOT_NODE := get_tree().root.get_child(0)
+
 @export var mouse_sensitivity: float = 0.3
 @export var interact_range: float = 2.5
 
@@ -10,7 +12,6 @@ extends CharacterBody3D
 var camera_pitch := 0.0
 
 var look_item: Item = null
-var held_item: Item = null
 
 func _ready() -> void:
 	
@@ -81,11 +82,15 @@ func _process(delta: float) -> void:
 		$ItemTooltip.position  = rect.position + Vector2(rect.size.x + $ItemHover.border_width / 2, -$ItemHover.border_width / 2)
 		$ItemTooltip/Text.text = "[font_size=28][color=white][b]" + look_item.item_name + "[/b][br][/color][color=gray][i]" + look_item.item_description + "[/i][/color][/font_size]"
 		$ItemTooltip.size      = $ItemTooltip/Text.size + Vector2(20.0, 20.0)
-		$ItemTooltip.visible   = true
 		
 	else:
-		$ItemHover.visible   = false
-		$ItemTooltip.visible = false
+		
+		$ItemHover.visible     = false
+		
+		# we don't just make it invisible because for a single frame when
+		# un-invisibling it, it would show the text it previously had (bad!)
+		$ItemTooltip.size      = Vector2(0.0, 0.0)
+		$ItemTooltip/Text.text = ""
 
 func _input(event):
 	
@@ -104,7 +109,7 @@ func _input(event):
 			look_item.set_highlight(false)
 			look_item = null
 	
-	elif event.is_action_pressed("interact"):
+	elif event.is_action_pressed("interact"): # pick up
 		
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			
@@ -117,8 +122,22 @@ func _input(event):
 			
 			if look_item:
 				
-				#TODO held_item
-				print("Attempting to equip: " + str(look_item))
+				look_item.reparent(ROOT_NODE)
+				
+				# can't equip something without first handling what's already equipped
+				if $Camera/HoldAnchor.get_child_count() == 1:
+					
+					var item: Item = $Camera/HoldAnchor.get_child(0)
+					
+					if not $Camera/Backpack.attempt_store_item(item):
+						
+						# drop what's currently equipped
+						item.set_rigidbody(true)
+						item.reparent(ROOT_NODE)
+				
+				look_item.reparent($Camera/HoldAnchor)
+				look_item.position = Vector3.ZERO
+				look_item.rotation = Vector3(0, 0, 0)
 	
 	elif event.is_action_pressed("alt_fire"): # drop
 		
