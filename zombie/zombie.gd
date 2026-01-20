@@ -55,6 +55,7 @@ func process_aggroed(delta: float) -> void:
 	# random idle sound
 	if not $Audio.playing and randi() % 2000 == 0:
 		$Audio.stream = idle_sound
+		$Audio.pitch_scale = randf_range(0.8, 1.1)
 		$Audio.play()
 	
 	# attack target
@@ -67,6 +68,7 @@ func process_aggroed(delta: float) -> void:
 			attack_cooldown = randf_range(0.8, 1.0)
 			
 			$Audio.stream = attack_sound
+			$Audio.pitch_scale = randf_range(0.95, 1.0)
 			$Audio.play()
 		
 	else:
