@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ctp0v8b07jg7a"]
+[gd_scene load_steps=9 format=3 uid="uid://ctp0v8b07jg7a"]
 
 [ext_resource type="Script" uid="uid://bpo7bldsu63g3" path="res://player/player_controller.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bcurelkjp51os" path="res://player/camera.gd" id="2_hqtel"]
@@ -10,6 +10,9 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_4flbx"]
 size = Vector3(1.1, 1.51, 0.3)
+
+[sub_resource type="Theme" id="Theme_qjkh3"]
+default_font_size = 48
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_4flbx")
@@ -103,13 +106,13 @@ text = "[font_size=24][color=white][b]Name[/b][br][/color][color=gray][i]Descrip
 fit_content = true
 autowrap_mode = 0
 
-[node name="HealthLabel" type="RichTextLabel" parent="."]
+[node name="HealthLabel" type="Label" parent="."]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -111.0
-offset_right = 449.0
+offset_top = -67.0
+offset_right = 154.0
 grow_vertical = 0
-bbcode_enabled = true
-text = "health here"
+theme = SubResource("Theme_qjkh3")
+text = "Health"
 vertical_alignment = 2

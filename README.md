@@ -25,4 +25,3 @@ like make a really messy but playable gaem then clean it up
 
 Stuff to add BEFORE a map:
 - Gunplay (reloading, ammo is pulled from the inventory, shooting audio and simple vfx)
-- Zombies attacking the player

@@ -13,6 +13,8 @@ var camera_pitch := 0.0
 
 var look_item: Item = null
 
+var hp_animation_fac := 0.0
+
 func get_camera() -> Camera3D:
 	return $Camera
 
@@ -21,7 +23,10 @@ func get_backpack() -> Node3D:
 
 func change_health(amt: int):
 	super.change_health(amt)
-	$HealthLabel.text = "[font_size=48]" + str(_health) + "/100 HP[/font_size]"
+	$HealthLabel.text = str(_health) + "/100 HP"
+	
+	if amt < 0:
+		hp_animation_fac = 1.0
 
 func _ready() -> void:
 	super._ready()
@@ -47,6 +52,15 @@ func _process(delta: float) -> void:
 	# process equipped item
 	if $Camera/HoldAnchor.get_child_count() == 1:
 		$Camera/HoldAnchor.get_child(0).process_when_held(self)
+	
+	# hp hurt animation
+	$HealthLabel.modulate = Color(1.0, 1.0 - hp_animation_fac * hp_animation_fac, 1.0 - hp_animation_fac, 1.0)
+	$HealthLabel.position.x = sin(hp_animation_fac) * hp_animation_fac * 10.0
+	
+	if hp_animation_fac > 0.0:
+		hp_animation_fac -= delta * 2.666 # decrease at 160 bpm
+	else:
+		hp_animation_fac = 0.0
 	
 	# assign look_item (in world or in inventory)
 	var new_look_item: Item
