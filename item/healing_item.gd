@@ -23,14 +23,15 @@ func process_when_held(player: Creature):
 			reparent(get_tree().root.get_child(0))
 			global_position = Vector3.ZERO
 
-func _process(_delta: float) -> void:
-	
-	if thread and not thread.is_alive():
-		thread.wait_to_finish()
-		queue_free()
-
 func _apply_healing(player: Creature):
 	
 	for i in range(seconds_of_healing):
 		OS.delay_msec(1000)
 		player.call_deferred("change_health", health_per_second)
+	
+	call_deferred("_finish_healing")
+
+func _finish_healing():
+	
+	thread.wait_to_finish()
+	queue_free()
