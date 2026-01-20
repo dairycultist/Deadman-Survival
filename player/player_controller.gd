@@ -23,6 +23,9 @@ func get_camera() -> Camera3D:
 func get_backpack() -> Node3D:
 	return $Camera/Backpack
 
+func set_item_label(text: String):
+	$ItemLabel.text = text
+
 func change_health(amt: int) -> int:
 	
 	amt = super.change_health(amt)
@@ -36,7 +39,7 @@ func change_health(amt: int) -> int:
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	$Camera/Backpack.visible = false
+	get_backpack().visible = false
 	change_health(0) # initializes health label
 
 func _process(delta: float) -> void:
@@ -88,14 +91,14 @@ func _process(delta: float) -> void:
 	
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 	
-		var query = PhysicsRayQueryParameters3D.create($Camera.global_position, $Camera.global_position - interact_range * $Camera.global_transform.basis.z)
+		var query = PhysicsRayQueryParameters3D.create(get_camera().global_position, get_camera().global_position - interact_range * get_camera().global_transform.basis.z)
 		var result = get_world_3d().direct_space_state.intersect_ray(query)
 		
 		new_look_item = result.collider if result and result.collider is Item else null;
 	
 	else:
 		
-		new_look_item = $Camera/Backpack.get_selected_item()
+		new_look_item = get_backpack().get_selected_item()
 	
 	if new_look_item:
 			
@@ -113,7 +116,7 @@ func _process(delta: float) -> void:
 	# ItemHover and ItemTooltip display
 	if look_item:
 		
-		var rect: Rect2 = $Camera.get_item_ssbb(look_item)
+		var rect: Rect2 = get_camera().get_item_ssbb(look_item)
 		
 		$ItemHover.position = rect.position
 		$ItemHover.size     = rect.size
@@ -138,11 +141,11 @@ func _input(event):
 		
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			$Camera/Backpack.visible = true
+			get_backpack().visible = true
 			$Crosshair.visible = false
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			$Camera/Backpack.visible = false
+			get_backpack().visible = false
 			$Crosshair.visible = true
 		
 		if look_item != null:
@@ -152,7 +155,7 @@ func _input(event):
 	elif event.is_action_pressed("interact"): # pick up
 		
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and look_item:
-			$Camera/Backpack.attempt_store_item(look_item)
+			get_backpack().attempt_store_item(look_item)
 		
 	elif event.is_action_pressed("fire"): # equip
 		
@@ -169,9 +172,12 @@ func _input(event):
 					var item: Item = $Camera/HoldAnchor.get_child(0)
 					
 					# if we can't store what's currently equipped, drop it
-					if not $Camera/Backpack.attempt_store_item(item):
+					if not get_backpack().attempt_store_item(item):
 						item.set_rigidbody(true)
 						item.reparent(ROOT_NODE)
+					
+					# clear item label, as the previously equipped item my have set it
+					set_item_label("")
 				
 				# move the item to the HoldAnchor
 				look_item.reparent($Camera/HoldAnchor)
@@ -193,4 +199,4 @@ func _input(event):
 		
 		rotation.y += deg_to_rad(-event.relative.x * mouse_sensitivity)
 		camera_pitch = clampf(camera_pitch - event.relative.y * mouse_sensitivity, -90, 90)
-		$Camera.rotation.x = deg_to_rad(camera_pitch)
+		get_camera().rotation.x = deg_to_rad(camera_pitch)

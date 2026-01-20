@@ -116,3 +116,18 @@ grow_vertical = 0
 theme = SubResource("Theme_qjkh3")
 text = "Health"
 vertical_alignment = 2
+
+[node name="ItemLabel" type="Label" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -154.0
+offset_top = -67.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_qjkh3")
+text = "Item"
+horizontal_alignment = 2
+vertical_alignment = 2
