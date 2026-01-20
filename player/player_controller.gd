@@ -24,6 +24,7 @@ func get_backpack() -> Node3D:
 	return $Camera/Backpack
 
 func change_health(amt: int) -> int:
+	
 	amt = super.change_health(amt)
 	$HealthLabel.text = str(_health) + "/100 HP"
 	

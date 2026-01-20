@@ -13,7 +13,7 @@ extends Creature
 var aggroed := false
 var attack_cooldown: float = 0.0
 
-func change_health(amt: int):
+func change_health(amt: int) -> int:
 	
 	amt = super.change_health(amt)
 	
