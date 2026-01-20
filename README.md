@@ -24,5 +24,5 @@ like make a really messy but playable gaem then clean it up
 ![rocky shore](https://plus.unsplash.com/premium_photo-1675805016076-caf1ae9c3e27?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
 
 Stuff to add BEFORE a map:
-- Gunplay (shooting, reloading, defeating zombies, ammo is pulled from the inventory)
-- Player health
+- Gunplay (reloading, ammo is pulled from the inventory, shooting audio and simple vfx)
+- Zombies attacking the player

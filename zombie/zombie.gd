@@ -1,5 +1,4 @@
 extends Creature
-class_name Zombie
 
 @export var target: Node3D # typically the player
 
@@ -21,24 +20,33 @@ func _process(delta: float) -> void:
 	
 	if aggroed:
 		
-		# face toward player
-		var target_position = target.global_position
-		target_position.y = global_position.y
-		look_at(target_position)
-		
-		# move forward
-		velocity.x += -transform.basis.z.x * accel * delta
-		velocity.z += -transform.basis.z.z * accel * delta
-		
-		velocity += get_gravity() * 2.5 * delta
-		velocity = lerp(velocity, Vector3.ZERO, delta * drag)
-		
-		move_and_slide()
+		process_aggroed(delta)
 		
 		if target.global_position.distance_to(global_position) > deaggro_range:
 			aggroed = false
 		
 	else:
 		
+		process_deaggroed(delta)
+		
 		if target.global_position.distance_to(global_position) < aggro_range:
 			aggroed = true
+
+func process_aggroed(delta: float) -> void:
+	
+	# face toward player
+	var target_position = target.global_position
+	target_position.y = global_position.y
+	look_at(target_position)
+	
+	# move forward
+	velocity.x += -transform.basis.z.x * accel * delta
+	velocity.z += -transform.basis.z.z * accel * delta
+	
+	velocity += get_gravity() * 2.5 * delta
+	velocity = lerp(velocity, Vector3.ZERO, delta * drag)
+	
+	move_and_slide()
+
+func process_deaggroed(_delta: float) -> void:
+	pass

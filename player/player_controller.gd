@@ -26,7 +26,7 @@ func change_health(amt: int):
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$Camera/Backpack.visible = false
-	change_health(0)
+	change_health(0) # initializes health label
 
 func _process(delta: float) -> void:
 	
