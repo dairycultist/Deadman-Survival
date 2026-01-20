@@ -1,12 +1,9 @@
-extends CharacterBody3D
+extends Creature
 
 @onready var ROOT_NODE := get_tree().root.get_child(0)
 
 @export var mouse_sensitivity: float = 0.3
 @export var interact_range: float = 2.5
-
-@export_category("Survival")
-@export_range(0, 100, 1) var _health: int = 100
 
 @export_category("Movement")
 @export var _drag: float = 8
@@ -19,18 +16,17 @@ var look_item: Item = null
 func get_camera() -> Camera3D:
 	return $Camera
 
-func get_backpack():
+func get_backpack() -> Node3D:
 	return $Camera/Backpack
 
-func damage(amt: int):
-	_health -= amt
+func change_health(amt: int):
+	super.change_health(amt)
 	$HealthLabel.text = "[font_size=48]" + str(_health) + "/100 HP[/font_size]"
 
 func _ready() -> void:
-	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$Camera/Backpack.visible = false
-	damage(0)
+	change_health(0)
 
 func _process(delta: float) -> void:
 	

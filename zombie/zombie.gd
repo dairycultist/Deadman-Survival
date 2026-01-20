@@ -1,4 +1,5 @@
-extends CharacterBody3D
+extends Creature
+class_name Zombie
 
 @export var target: Node3D # typically the player
 
@@ -8,6 +9,13 @@ extends CharacterBody3D
 @export var accel := 20
 
 var aggroed := false
+
+func change_health(amt: int):
+	
+	super.change_health(amt)
+	
+	if _health <= 0:
+		queue_free()
 
 func _process(delta: float) -> void:
 	

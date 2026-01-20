@@ -1,16 +1,16 @@
 [gd_scene load_steps=10 format=3 uid="uid://deknyv4y0bmnx"]
 
-[ext_resource type="Texture2D" uid="uid://c2q633o6tv2f0" path="res://debug.png" id="1_f3sb7"]
-[ext_resource type="Script" uid="uid://bqn3p1o4312am" path="res://zombie_spawner.gd" id="2_fj7yv"]
-[ext_resource type="PackedScene" uid="uid://ctp0v8b07jg7a" path="res://player.tscn" id="3_036b0"]
-[ext_resource type="PackedScene" uid="uid://bxbcos0w0waue" path="res://item/item_tscns/pistol.tscn" id="4_aqk2v"]
-[ext_resource type="PackedScene" uid="uid://b5et8cc5v2pmi" path="res://item/item_tscns/pistol_magazine.tscn" id="5_036b0"]
-[ext_resource type="PackedScene" uid="uid://bt8egdmyuyrio" path="res://item/item_tscns/bandage.tscn" id="6_dwbse"]
+[ext_resource type="Texture2D" uid="uid://c2q633o6tv2f0" path="res://world/debug.png" id="1_fn3g3"]
+[ext_resource type="Script" uid="uid://bqn3p1o4312am" path="res://world/zombie_spawner.gd" id="2_sc4t8"]
+[ext_resource type="PackedScene" uid="uid://ctp0v8b07jg7a" path="res://player/player.tscn" id="3_ai45w"]
+[ext_resource type="PackedScene" uid="uid://bxbcos0w0waue" path="res://item/item_tscns/pistol.tscn" id="4_4papg"]
+[ext_resource type="PackedScene" uid="uid://b5et8cc5v2pmi" path="res://item/item_tscns/pistol_magazine.tscn" id="5_fyhu2"]
+[ext_resource type="PackedScene" uid="uid://bt8egdmyuyrio" path="res://item/item_tscns/bandage.tscn" id="6_ov2xu"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gv5m4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fj7yv"]
-albedo_texture = ExtResource("1_f3sb7")
+albedo_texture = ExtResource("1_fn3g3")
 uv1_scale = Vector3(50, 50, 50)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_f3sb7"]
@@ -32,41 +32,45 @@ mesh = SubResource("PlaneMesh_f3sb7")
 transform = Transform3D(0.70710677, 0.49999997, -0.49999997, 0, 0.7071068, 0.7071068, 0.7071068, -0.5, 0.5, 0, 0, 0)
 
 [node name="ZombieSpawner" type="Node3D" parent="." node_paths=PackedStringArray("spawning_surface", "spawn_center")]
-script = ExtResource("2_fj7yv")
+script = ExtResource("2_sc4t8")
 spawning_surface = NodePath("../Floor")
 spawn_center = NodePath("../Player")
 min_spawn_distance = 30.0
 spawn_rate_sec = 20
 
-[node name="Player" parent="." instance=ExtResource("3_036b0")]
+[node name="Player" parent="." instance=ExtResource("3_ai45w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+interact_range = null
+_health = null
+_drag = null
+_accel = null
 
-[node name="Pistol" parent="." instance=ExtResource("4_aqk2v")]
+[node name="Pistol" parent="." instance=ExtResource("4_4papg")]
 transform = Transform3D(-4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 0.9999999, -1, 5, 0)
 
-[node name="Pistol2" parent="." instance=ExtResource("4_aqk2v")]
+[node name="Pistol2" parent="." instance=ExtResource("4_4papg")]
 transform = Transform3D(-4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 0.9999999, -3, 5, 1)
 
-[node name="PistolMagazine" parent="." instance=ExtResource("5_036b0")]
+[node name="PistolMagazine" parent="." instance=ExtResource("5_fyhu2")]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1.9203175, 5.033605, 0.82986116)
 
-[node name="PistolMagazine2" parent="." instance=ExtResource("5_036b0")]
+[node name="PistolMagazine2" parent="." instance=ExtResource("5_fyhu2")]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -2.4224234, 5.033605, -0.1435703)
 
-[node name="PistolMagazine3" parent="." instance=ExtResource("5_036b0")]
+[node name="PistolMagazine3" parent="." instance=ExtResource("5_fyhu2")]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -2.3684974, 5.033605, -0.8427714)
 
-[node name="PistolMagazine4" parent="." instance=ExtResource("5_036b0")]
+[node name="PistolMagazine4" parent="." instance=ExtResource("5_fyhu2")]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -2.3226748, 5.033605, -1.7814509)
 
-[node name="PistolMagazine5" parent="." instance=ExtResource("5_036b0")]
+[node name="PistolMagazine5" parent="." instance=ExtResource("5_fyhu2")]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1.2989337, 5.033605, -2.330778)
 
-[node name="PistolMagazine6" parent="." instance=ExtResource("5_036b0")]
+[node name="PistolMagazine6" parent="." instance=ExtResource("5_fyhu2")]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.08051944, 5.033605, -3.1741347)
 
-[node name="PistolMagazine7" parent="." instance=ExtResource("5_036b0")]
+[node name="PistolMagazine7" parent="." instance=ExtResource("5_fyhu2")]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1.1837544, 5.0336046, -3.0681834)
 
-[node name="Bandage" parent="." instance=ExtResource("6_dwbse")]
+[node name="Bandage" parent="." instance=ExtResource("6_ov2xu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3091617, 5.1742287, -0.17054725)
