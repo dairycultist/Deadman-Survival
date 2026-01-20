@@ -2,19 +2,14 @@ extends Item
 
 @export var gunshot_sound: AudioStream
 
-var audio: AudioStreamPlayer
-
 func _ready() -> void:
 	super._ready()
-	audio = AudioStreamPlayer.new()
-	add_child(audio)
 
 func process_when_held(player: Node3D):
 	
 	if Input.is_action_just_pressed("fire"):
 		
-		audio.stream = gunshot_sound
-		audio.play()
+		GlobalAudio.play(gunshot_sound, 1.0, randf_range(0.95, 1.0))
 	
 		var camera: Camera3D = player.get_camera()
 		

@@ -32,7 +32,6 @@ func change_health(amt: int):
 		hp_animation_is_heal = amt > 0
 
 func _ready() -> void:
-	super._ready()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$Camera/Backpack.visible = false
 	change_health(0) # initializes health label

@@ -7,13 +7,8 @@ class_name Creature
 ## audio source.
 @export var hit_sound: AudioStream
 
-var hit_audio: AudioStreamPlayer
-
-func _ready() -> void:
-	hit_audio = AudioStreamPlayer.new()
-	add_child(hit_audio)
-	hit_audio.stream = hit_sound
-
 func change_health(amt: int):
 	_health += amt
-	hit_audio.play()
+	
+	if amt < 0:
+		GlobalAudio.play(hit_sound)

@@ -1,27 +1,33 @@
 extends Node
 
-var sources: Array
-var available_source_index: int = 0
+var _sources: Array[AudioStreamPlayer]
+var _available_source_index: int = 0
 
-var listener: Node3D # for position
+var _sources_3D: Array[AudioStreamPlayer3D]
+var _available_source_3D_index: int = 0
 
 func _ready() -> void:
 	
-	sources = [ AudioStreamPlayer3D.new(), AudioStreamPlayer3D.new(), AudioStreamPlayer3D.new() ]
+	_sources    = [ AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new() ]
+	_sources_3D = [ AudioStreamPlayer3D.new(), AudioStreamPlayer3D.new(), AudioStreamPlayer3D.new() ]
 	
-	for source in sources:
-		get_node("/root/World").add_child(source)
-	
-	listener = get_node("/root/World/Player")
+	for source in _sources:
+		get_tree().root.get_child(0).add_child(source)
 
-func play(sound: AudioStreamWAV):
+func play(sound: AudioStream, volume: float = 1.0, pitch: float = 1.0):
 	
-	play_param(sound, 1.0, 1.0, listener.global_position)
+	var source := _sources[_available_source_index]
+	_available_source_index = (_available_source_index + 1) % _sources.size()
+	
+	source.stream = sound
+	source.volume_linear = volume
+	source.pitch_scale = pitch
+	source.play()
 
-func play_param(sound: AudioStreamWAV, volume: float, pitch: float, position: Vector3):
+func play_at(sound: AudioStream, position: Vector3, volume: float = 1.0, pitch: float = 1.0):
 	
-	var source: AudioStreamPlayer3D = sources[available_source_index]
-	available_source_index = (available_source_index + 1) % sources.size()
+	var source := _sources_3D[_available_source_index]
+	_available_source_3D_index = (_available_source_3D_index + 1) % _sources_3D.size()
 	
 	source.stream = sound
 	source.volume_linear = volume

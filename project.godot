@@ -15,6 +15,10 @@ run/main_scene="uid://deknyv4y0bmnx"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GlobalAudio="*res://global_audio.gd"
+
 [input]
 
 walk_left={
