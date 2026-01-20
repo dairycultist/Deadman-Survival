@@ -27,5 +27,5 @@ func set_rigidbody(value: bool):
 	freeze = not value
 	get_child(0).disabled = not value # collider
 
-func process_when_held(_player: Node3D):
+func process_when_held(_player: Creature):
 	pass

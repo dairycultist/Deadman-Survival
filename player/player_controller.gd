@@ -23,13 +23,15 @@ func get_camera() -> Camera3D:
 func get_backpack() -> Node3D:
 	return $Camera/Backpack
 
-func change_health(amt: int):
-	super.change_health(amt)
+func change_health(amt: int) -> int:
+	amt = super.change_health(amt)
 	$HealthLabel.text = str(_health) + "/100 HP"
 	
 	if amt != 0:
 		hp_animation_fac = 1.0
 		hp_animation_is_heal = amt > 0
+	
+	return amt
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

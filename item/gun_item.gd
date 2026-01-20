@@ -5,7 +5,7 @@ extends Item
 func _ready() -> void:
 	super._ready()
 
-func process_when_held(player: Node3D):
+func process_when_held(player: Creature):
 	
 	# use player.get_backpack().get_all_items() for finding ammo during reload
 	

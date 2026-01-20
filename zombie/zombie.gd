@@ -15,10 +15,12 @@ var attack_cooldown: float = 0.0
 
 func change_health(amt: int):
 	
-	super.change_health(amt)
+	amt = super.change_health(amt)
 	
 	if _health <= 0:
 		queue_free()
+	
+	return amt
 
 func _process(delta: float) -> void:
 	
