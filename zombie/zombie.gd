@@ -1,13 +1,17 @@
 extends Creature
 
-@export var target: Node3D # typically the player
+@export var target: Creature # typically the player
 
 @export_range(5, 100, 1, "or_greater") var aggro_range := 10.0
 @export_range(5, 100, 1, "or_greater") var deaggro_range := 20.0
 @export var drag := 8
 @export var accel := 20
 
+@export var idle_sound: AudioStream
+@export var attack_sound: AudioStream
+
 var aggroed := false
+var attack_cooldown: float = 0.0
 
 func change_health(amt: int):
 	
@@ -47,6 +51,18 @@ func process_aggroed(delta: float) -> void:
 	velocity = lerp(velocity, Vector3.ZERO, delta * drag)
 	
 	move_and_slide()
+	
+	if attack_cooldown <= 0.0:
+		
+		# attack if close enough
+		if target.global_position.distance_to(global_position) < 1.5:
+			target.change_health(-5)
+			$Audio.stream = attack_sound
+			$Audio.play()
+			attack_cooldown = 1.0
+		
+	else:
+		attack_cooldown -= delta
 
 func process_deaggroed(_delta: float) -> void:
 	pass
