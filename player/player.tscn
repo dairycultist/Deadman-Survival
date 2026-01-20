@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ctp0v8b07jg7a"]
+[gd_scene load_steps=11 format=3 uid="uid://ctp0v8b07jg7a"]
 
 [ext_resource type="Script" uid="uid://bpo7bldsu63g3" path="res://player/player_controller.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bcurelkjp51os" path="res://player/camera.gd" id="2_hqtel"]
@@ -13,6 +13,12 @@ size = Vector3(1.1, 1.51, 0.3)
 
 [sub_resource type="Theme" id="Theme_qjkh3"]
 default_font_size = 48
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjkh3"]
+bg_color = Color(0.92099476, 0.9209946, 0.9209946, 0.21176471)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g6k8r"]
+bg_color = Color(0.37752393, 0.6876234, 0, 1)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_4flbx")
@@ -110,12 +116,27 @@ autowrap_mode = 0
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
+offset_left = 10.0
 offset_top = -67.0
-offset_right = 154.0
+offset_right = 488.0
+offset_bottom = 4.0
 grow_vertical = 0
 theme = SubResource("Theme_qjkh3")
-text = "Health"
+text = "50"
 vertical_alignment = 2
+
+[node name="Bar" type="ProgressBar" parent="HealthLabel"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_qjkh3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_g6k8r")
+value = 100.0
+show_percentage = false
 
 [node name="ItemLabel" type="Label" parent="."]
 anchors_preset = 3
@@ -123,11 +144,12 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -154.0
+offset_left = -164.0
 offset_top = -67.0
+offset_right = -10.001099
 grow_horizontal = 0
 grow_vertical = 0
 theme = SubResource("Theme_qjkh3")
-text = "Item"
+text = "10/10"
 horizontal_alignment = 2
 vertical_alignment = 2

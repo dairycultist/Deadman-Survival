@@ -29,9 +29,10 @@ func set_item_label(text: String):
 func change_health(amt: int) -> int:
 	
 	amt = super.change_health(amt)
-	$HealthLabel.text = str(_health) + "/100 HP"
 	
 	if amt != 0:
+		$HealthLabel.text = str(_health) + "/100 HP"
+		$HealthLabel/Bar.value = _health
 		hp_animation_fac = 1.0
 		hp_animation_is_heal = amt > 0
 	
@@ -40,7 +41,7 @@ func change_health(amt: int) -> int:
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	get_backpack().visible = false
-	change_health(0) # initializes health label
+	$HealthLabel.text = str(_health) + "/100 HP"
 
 func _process(delta: float) -> void:
 	
