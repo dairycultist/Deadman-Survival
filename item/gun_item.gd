@@ -7,6 +7,8 @@ func _ready() -> void:
 
 func process_when_held(player: Node3D):
 	
+	# use player.get_backpack().get_all_items() for finding ammo during reload
+	
 	if Input.is_action_just_pressed("fire"):
 		
 		GlobalAudio.play(gunshot_sound, 1.0, randf_range(0.95, 1.0))

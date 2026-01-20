@@ -36,17 +36,28 @@ func attempt_store_item(item: Item) -> bool:
 	
 	return false
 
+func get_all_items() -> Array[Item]:
+	
+	var items: Array[Item]
+	
+	for slot in item_slots:
+		if slot.get_child_count() == 1:
+			items.append(slot.get_child(0))
+			
+	for slot in weapon_slots:
+		if slot.get_child_count() == 1:
+			items.append(slot.get_child(0))
+	
+	return items
+
 # returns which item is being hovered on based on the mouse position
 func get_selected_item() -> Item:
 	
 	var mouse_pos := get_viewport().get_mouse_position()
 	
-	var slots := item_slots.duplicate()
-	slots.append_array(weapon_slots)
-	
-	for slot in slots:
+	for item in get_all_items():
 		
-		if slot.get_child_count() == 1 and get_parent().get_item_ssbb(slot.get_child(0)).has_point(Vector2(mouse_pos.x, mouse_pos.y)):
-			return slot.get_child(0)
+		if get_parent().get_item_ssbb(item).has_point(Vector2(mouse_pos.x, mouse_pos.y)):
+			return item
 	
 	return null

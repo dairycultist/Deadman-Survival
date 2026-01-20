@@ -21,7 +21,7 @@ script = ExtResource("1_uhhsj")
 gunshot_sound = ExtResource("2_8jb7s")
 is_weapon = true
 item_name = "Pistol (15/15)"
-item_description = "A standard issue military pistol."
+item_description = "A standard issue military pistol. Keep in mind that when[br]you reload, ammo in the current magazine is discarded."
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.011932373, -0.14331055)
