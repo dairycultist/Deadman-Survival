@@ -12,6 +12,7 @@ size = Vector3(1.1, 1.51, 0.3)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_4flbx")
+mouse_sensitivity = 0.25
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

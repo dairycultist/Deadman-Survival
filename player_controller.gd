@@ -33,42 +33,32 @@ func _process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	# looking at item (in world or in inventory)
+	# assign look_item (in world or in inventory)
+	var new_look_item: Item
+	
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 	
 		var query = PhysicsRayQueryParameters3D.create($Camera.global_position, $Camera.global_position - interact_range * $Camera.global_transform.basis.z)
 		var result = get_world_3d().direct_space_state.intersect_ray(query)
 		
-		if result and result.collider is Item:
-			
-			if look_item != result.collider:
-				if look_item:
-					look_item.set_highlight(false)
-				look_item = result.collider
-				look_item.set_highlight(true)
-			
-		elif look_item:
-			
-			look_item.set_highlight(false)
-			look_item = null
+		new_look_item = result.collider if result and result.collider is Item else null;
 	
 	else:
 		
-		var new_look_item: Item = $Camera/Backpack.get_selected_item()
+		new_look_item = $Camera/Backpack.get_selected_item()
+	
+	if new_look_item:
+			
+		if look_item != new_look_item:
+			if look_item:
+				look_item.set_highlight(false)
+			look_item = new_look_item
+			look_item.set_highlight(true)
 		
-		if new_look_item:
-			
-			if look_item != new_look_item:
-				
-				if look_item:
-					look_item.set_highlight(false)
-				look_item = new_look_item
-				look_item.set_highlight(true)
-			
-		elif look_item != null:
-			
-			look_item.set_highlight(false)
-			look_item = null
+	elif look_item:
+		
+		look_item.set_highlight(false)
+		look_item = null
 	
 	# ItemHover and ItemTooltip display
 	if look_item:
@@ -79,8 +69,8 @@ func _process(delta: float) -> void:
 		$ItemHover.size     = rect.size
 		$ItemHover.visible  = true
 		
-		$ItemTooltip.position  = rect.position + Vector2(rect.size.x + $ItemHover.border_width / 2, -$ItemHover.border_width / 2)
 		$ItemTooltip/Text.text = "[font_size=28][color=white][b]" + look_item.item_name + "[/b][br][/color][color=gray][i]" + look_item.item_description + "[/i][/color][/font_size]"
+		$ItemTooltip.position  = rect.position + Vector2(rect.size.x + $ItemHover.border_width / 2, -$ItemHover.border_width / 2)
 		$ItemTooltip.size      = $ItemTooltip/Text.size + Vector2(20.0, 20.0)
 		
 	else:
@@ -111,10 +101,8 @@ func _input(event):
 	
 	elif event.is_action_pressed("interact"): # pick up
 		
-		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			
-			if look_item and $Camera/Backpack.attempt_store_item(look_item):
-				look_item = null
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and look_item:
+			$Camera/Backpack.attempt_store_item(look_item)
 		
 	elif event.is_action_pressed("fire"): # equip
 		
@@ -122,6 +110,7 @@ func _input(event):
 			
 			if look_item:
 				
+				# empty the slot
 				look_item.reparent(ROOT_NODE)
 				
 				# can't equip something without first handling what's already equipped
@@ -129,12 +118,12 @@ func _input(event):
 					
 					var item: Item = $Camera/HoldAnchor.get_child(0)
 					
+					# if we can't store what's currently equipped, drop it
 					if not $Camera/Backpack.attempt_store_item(item):
-						
-						# drop what's currently equipped
 						item.set_rigidbody(true)
 						item.reparent(ROOT_NODE)
 				
+				# move the item to the HoldAnchor
 				look_item.reparent($Camera/HoldAnchor)
 				look_item.position = Vector3.ZERO
 				look_item.rotation = Vector3(0, 0, 0)
@@ -144,7 +133,6 @@ func _input(event):
 		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 			
 			if look_item:
-				
 				look_item.set_rigidbody(true)
 				look_item.reparent(get_tree().root.get_child(0))
 	
