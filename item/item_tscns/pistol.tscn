@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bxbcos0w0waue"]
 
-[ext_resource type="Script" uid="uid://l8s3ypcg5wml" path="res://item.gd" id="1_lwu4s"]
-[ext_resource type="Shader" uid="uid://b4re70be6kgm1" path="res://item.gdshader" id="2_47bfx"]
+[ext_resource type="Script" uid="uid://bqs45nxx7a27c" path="res://item/item_tscns/gun_item.gd" id="1_uhhsj"]
+[ext_resource type="Shader" uid="uid://b4re70be6kgm1" path="res://item/item.gdshader" id="2_47bfx"]
 [ext_resource type="ArrayMesh" uid="uid://cp4or3mbrj0nd" path="res://models/pistol.obj" id="3_e40hb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_036b0"]
@@ -16,10 +16,10 @@ shader_parameter/highlight_amt = 0.0
 
 [node name="Pistol" type="RigidBody3D"]
 transform = Transform3D(-4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 0.9999999, 0, 0, 0)
-script = ExtResource("1_lwu4s")
+script = ExtResource("1_uhhsj")
 is_weapon = true
 item_name = "Pistol"
-item_description = "A standard issue pistol."
+item_description = "A standard issue military pistol."
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.011932373, -0.14331055)

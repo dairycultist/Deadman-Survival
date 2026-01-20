@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://bt8egdmyuyrio"]
 
 [ext_resource type="ArrayMesh" uid="uid://cyx6u2ayxyh3g" path="res://models/bandage.obj" id="1_1mj4e"]
-[ext_resource type="Script" uid="uid://l8s3ypcg5wml" path="res://item.gd" id="1_pcw5p"]
-[ext_resource type="Shader" uid="uid://b4re70be6kgm1" path="res://item.gdshader" id="3_w6ngn"]
+[ext_resource type="Script" uid="uid://l8s3ypcg5wml" path="res://item/item.gd" id="1_pcw5p"]
+[ext_resource type="Shader" uid="uid://b4re70be6kgm1" path="res://item/item.gdshader" id="3_w6ngn"]
 [ext_resource type="Texture2D" uid="uid://bxb80q0uq4xcr" path="res://models/bandage.png" id="4_8y8bc"]
 [ext_resource type="Texture2D" uid="uid://lipl62cpdrek" path="res://models/bandage_reflective.png" id="5_8y8bc"]
 

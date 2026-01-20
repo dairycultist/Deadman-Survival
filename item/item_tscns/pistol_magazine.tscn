@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b5et8cc5v2pmi"]
 
-[ext_resource type="Script" uid="uid://l8s3ypcg5wml" path="res://item.gd" id="1_hsnpj"]
-[ext_resource type="Shader" uid="uid://b4re70be6kgm1" path="res://item.gdshader" id="2_bte3w"]
+[ext_resource type="Script" uid="uid://l8s3ypcg5wml" path="res://item/item.gd" id="1_hsnpj"]
+[ext_resource type="Shader" uid="uid://b4re70be6kgm1" path="res://item/item.gdshader" id="2_bte3w"]
 [ext_resource type="ArrayMesh" uid="uid://eiqx334ur2nd" path="res://models/pistol_magazine.obj" id="3_ytp7k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dwbse"]

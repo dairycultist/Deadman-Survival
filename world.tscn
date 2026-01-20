@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://c2q633o6tv2f0" path="res://debug.png" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://bqn3p1o4312am" path="res://zombie_spawner.gd" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://ctp0v8b07jg7a" path="res://player.tscn" id="3_036b0"]
-[ext_resource type="PackedScene" uid="uid://bxbcos0w0waue" path="res://item_tscns/pistol.tscn" id="4_aqk2v"]
-[ext_resource type="PackedScene" uid="uid://b5et8cc5v2pmi" path="res://item_tscns/pistol_magazine.tscn" id="5_036b0"]
-[ext_resource type="PackedScene" uid="uid://bt8egdmyuyrio" path="res://item_tscns/bandage.tscn" id="6_dwbse"]
+[ext_resource type="PackedScene" uid="uid://bxbcos0w0waue" path="res://item/item_tscns/pistol.tscn" id="4_aqk2v"]
+[ext_resource type="PackedScene" uid="uid://b5et8cc5v2pmi" path="res://item/item_tscns/pistol_magazine.tscn" id="5_036b0"]
+[ext_resource type="PackedScene" uid="uid://bt8egdmyuyrio" path="res://item/item_tscns/bandage.tscn" id="6_dwbse"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gv5m4"]
 

@@ -13,6 +13,12 @@ var camera_pitch := 0.0
 
 var look_item: Item = null
 
+func get_camera() -> Camera3D:
+	return $Camera
+
+func get_backpack():
+	return $Camera/Backpack
+
 func _ready() -> void:
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -32,6 +38,10 @@ func _process(delta: float) -> void:
 	velocity = lerp(velocity, Vector3.ZERO, delta * drag)
 	
 	move_and_slide()
+	
+	# process equipped item
+	if $Camera/HoldAnchor.get_child_count() == 1:
+		$Camera/HoldAnchor.get_child(0).process_when_held(self)
 	
 	# assign look_item (in world or in inventory)
 	var new_look_item: Item
