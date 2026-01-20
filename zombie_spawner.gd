@@ -1,6 +1,6 @@
 extends Node3D
 
-var ZOMBIE_TSCN: = preload("res://zombie.tscn")
+var ZOMBIE_TSCN: = preload("res://zombie/zombie.tscn")
 
 @export var spawning_surface: StaticBody3D
 @export var spawn_center: Node3D # typically the player
@@ -26,12 +26,13 @@ func _process(delta: float) -> void:
 		
 		var spawn_distance := lerpf(min_spawn_distance, max_spawn_distance, randf())
 		
-		var spawn_pos = spawn_center.global_position
-		spawn_pos.y += 25.0
+		var from = spawn_center.global_position
+		from.y += 25.0
 		var a = randf_range(0, PI * 2)
-		spawn_pos.x += cos(a) * spawn_distance
-		spawn_pos.z += sin(a) * spawn_distance
-		var result = get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(spawn_pos, spawn_pos + Vector3(0, -50, 0)))
+		from.x += cos(a) * spawn_distance
+		from.z += sin(a) * spawn_distance
+		var to = Vector3(from.x, global_position.y, from.z)
+		var result = get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(from, to))
 		
 		if (result and result.collider == spawning_surface):
 			

@@ -19,6 +19,7 @@ size = Vector2(100, 100)
 [node name="World" type="Node3D"]
 
 [node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape3D_gv5m4")
@@ -38,33 +39,34 @@ min_spawn_distance = 30.0
 spawn_rate_sec = 20
 
 [node name="Player" parent="." instance=ExtResource("3_036b0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
 [node name="Pistol" parent="." instance=ExtResource("4_aqk2v")]
-transform = Transform3D(-4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 0.9999999, -1, 0, 0)
+transform = Transform3D(-4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 0.9999999, -1, 5, 0)
 
 [node name="Pistol2" parent="." instance=ExtResource("4_aqk2v")]
-transform = Transform3D(-4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 0.9999999, -3, 0, 1)
+transform = Transform3D(-4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 0.9999999, -3, 5, 1)
 
 [node name="PistolMagazine" parent="." instance=ExtResource("5_036b0")]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1.9203175, 0.033605244, 0.82986116)
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1.9203175, 5.033605, 0.82986116)
 
 [node name="PistolMagazine2" parent="." instance=ExtResource("5_036b0")]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -2.4224234, 0.033605006, -0.1435703)
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -2.4224234, 5.033605, -0.1435703)
 
 [node name="PistolMagazine3" parent="." instance=ExtResource("5_036b0")]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -2.3684974, 0.033605006, -0.8427714)
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -2.3684974, 5.033605, -0.8427714)
 
 [node name="PistolMagazine4" parent="." instance=ExtResource("5_036b0")]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -2.3226748, 0.033605006, -1.7814509)
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -2.3226748, 5.033605, -1.7814509)
 
 [node name="PistolMagazine5" parent="." instance=ExtResource("5_036b0")]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1.2989337, 0.033605006, -2.330778)
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1.2989337, 5.033605, -2.330778)
 
 [node name="PistolMagazine6" parent="." instance=ExtResource("5_036b0")]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.08051944, 0.033605006, -3.1741347)
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.08051944, 5.033605, -3.1741347)
 
 [node name="PistolMagazine7" parent="." instance=ExtResource("5_036b0")]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1.1837544, 0.033604767, -3.0681834)
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1.1837544, 5.0336046, -3.0681834)
 
 [node name="Bandage" parent="." instance=ExtResource("6_dwbse")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3091617, 0.1742286, -0.17054725)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3091617, 5.1742287, -0.17054725)
