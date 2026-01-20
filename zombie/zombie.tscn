@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://sxxmd5kxu0sx"]
+[gd_scene load_steps=6 format=3 uid="uid://sxxmd5kxu0sx"]
 
 [ext_resource type="Script" uid="uid://ck3jutn4h76ts" path="res://zombie/zombie.gd" id="1_uiaus"]
+[ext_resource type="AudioStream" uid="uid://c68xj8dfal7hb" path="res://zombie/sounds/zombie_hit.wav" id="2_ixsl6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tlwt5"]
 
@@ -15,6 +16,7 @@ script = ExtResource("1_uiaus")
 aggro_range = 15.0
 deaggro_range = 25.0
 accel = 12
+hit_sound = ExtResource("2_ixsl6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

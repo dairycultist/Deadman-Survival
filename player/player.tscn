@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctp0v8b07jg7a"]
+[gd_scene load_steps=8 format=3 uid="uid://ctp0v8b07jg7a"]
 
 [ext_resource type="Script" uid="uid://bpo7bldsu63g3" path="res://player/player_controller.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bcurelkjp51os" path="res://player/camera.gd" id="2_hqtel"]
 [ext_resource type="Script" uid="uid://ssggqmpmlela" path="res://player/backpack.gd" id="2_onrkg"]
+[ext_resource type="AudioStream" uid="uid://db4bun8083ndb" path="res://player/player_hit.wav" id="2_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://dcb0pll4j2nup" path="res://player/crosshair.png" id="3_i3pqv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aqk2v"]
@@ -13,6 +14,7 @@ size = Vector3(1.1, 1.51, 0.3)
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_4flbx")
 mouse_sensitivity = 0.25
+hit_sound = ExtResource("2_qjkh3")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

@@ -24,6 +24,7 @@ func change_health(amt: int):
 	$HealthLabel.text = "[font_size=48]" + str(_health) + "/100 HP[/font_size]"
 
 func _ready() -> void:
+	super._ready()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$Camera/Backpack.visible = false
 	change_health(0) # initializes health label
