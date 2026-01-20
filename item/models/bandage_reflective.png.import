@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://lipl62cpdrek"
-path.s3tc="res://.godot/imported/bandage_reflective.png-a1358429447a355a4f3b6b4e77a4431a.s3tc.ctex"
+path.s3tc="res://.godot/imported/bandage_reflective.png-9de584a3426d865b39e4b5737fc9ae60.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://models/bandage_reflective.png"
-dest_files=["res://.godot/imported/bandage_reflective.png-a1358429447a355a4f3b6b4e77a4431a.s3tc.ctex"]
+source_file="res://item/models/bandage_reflective.png"
+dest_files=["res://.godot/imported/bandage_reflective.png-9de584a3426d865b39e4b5737fc9ae60.s3tc.ctex"]
 
 [params]
 

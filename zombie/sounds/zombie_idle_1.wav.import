@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://60nuwe86yfij"
-path="res://.godot/imported/zombie_idle_1.wav-e2216cda4115d42d17393b6d1931d6aa.sample"
+path="res://.godot/imported/zombie_idle_1.wav-d79121f68eab030423c1e4bc1b0c7fbc.sample"
 
 [deps]
 
-source_file="res://zombie/zombie_sounds/zombie_idle_1.wav"
-dest_files=["res://.godot/imported/zombie_idle_1.wav-e2216cda4115d42d17393b6d1931d6aa.sample"]
+source_file="res://zombie/sounds/zombie_idle_1.wav"
+dest_files=["res://.godot/imported/zombie_idle_1.wav-d79121f68eab030423c1e4bc1b0c7fbc.sample"]
 
 [params]
 

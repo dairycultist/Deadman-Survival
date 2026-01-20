@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bh352mowixnpt"
-path="res://.godot/imported/zombie_hurt_1.wav-3921e115e88b46dfd5875183e7d6cdb4.sample"
+path="res://.godot/imported/zombie_hurt_1.wav-cb11ed7504722f0668550365341cc2f8.sample"
 
 [deps]
 
-source_file="res://zombie/zombie_sounds/zombie_hurt_1.wav"
-dest_files=["res://.godot/imported/zombie_hurt_1.wav-3921e115e88b46dfd5875183e7d6cdb4.sample"]
+source_file="res://zombie/sounds/zombie_hurt_1.wav"
+dest_files=["res://.godot/imported/zombie_hurt_1.wav-cb11ed7504722f0668550365341cc2f8.sample"]
 
 [params]
 

@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://c2q633o6tv2f0" path="res://world/debug.png" id="1_fn3g3"]
 [ext_resource type="Script" uid="uid://bqn3p1o4312am" path="res://world/zombie_spawner.gd" id="2_sc4t8"]
 [ext_resource type="PackedScene" uid="uid://ctp0v8b07jg7a" path="res://player/player.tscn" id="3_ai45w"]
-[ext_resource type="PackedScene" uid="uid://bxbcos0w0waue" path="res://item/item_tscns/pistol.tscn" id="4_4papg"]
-[ext_resource type="PackedScene" uid="uid://b5et8cc5v2pmi" path="res://item/item_tscns/pistol_magazine.tscn" id="5_fyhu2"]
-[ext_resource type="PackedScene" uid="uid://bt8egdmyuyrio" path="res://item/item_tscns/bandage.tscn" id="6_ov2xu"]
+[ext_resource type="PackedScene" uid="uid://bxbcos0w0waue" path="res://item/prefabs/pistol.tscn" id="4_4papg"]
+[ext_resource type="PackedScene" uid="uid://b5et8cc5v2pmi" path="res://item/prefabs/pistol_magazine.tscn" id="5_fyhu2"]
+[ext_resource type="PackedScene" uid="uid://bt8egdmyuyrio" path="res://item/prefabs/bandage.tscn" id="6_ov2xu"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gv5m4"]
 
@@ -40,10 +40,6 @@ spawn_rate_sec = 20
 
 [node name="Player" parent="." instance=ExtResource("3_ai45w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
-interact_range = null
-_health = null
-_drag = null
-_accel = null
 
 [node name="Pistol" parent="." instance=ExtResource("4_4papg")]
 transform = Transform3D(-4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 0.9999999, -1, 5, 0)

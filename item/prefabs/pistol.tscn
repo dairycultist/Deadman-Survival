@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bxbcos0w0waue"]
 
-[ext_resource type="Script" uid="uid://bqs45nxx7a27c" path="res://item/item_tscns/gun_item.gd" id="1_uhhsj"]
+[ext_resource type="Script" uid="uid://bqs45nxx7a27c" path="res://item/prefabs/gun_item.gd" id="1_uhhsj"]
 [ext_resource type="Shader" uid="uid://b4re70be6kgm1" path="res://item/item.gdshader" id="2_47bfx"]
-[ext_resource type="ArrayMesh" uid="uid://cp4or3mbrj0nd" path="res://models/pistol.obj" id="3_e40hb"]
+[ext_resource type="ArrayMesh" uid="uid://cp4or3mbrj0nd" path="res://item/models/pistol.obj" id="3_e40hb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_036b0"]
 size = Vector3(0.087890625, 0.4142456, 0.60009766)

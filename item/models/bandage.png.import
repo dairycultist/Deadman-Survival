@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bxb80q0uq4xcr"
-path.s3tc="res://.godot/imported/bandage.png-c316e8acd33fc3afb27d56ff2d414099.s3tc.ctex"
+path.s3tc="res://.godot/imported/bandage.png-0196eb0ffb56e1c97c321b5ed13ee4e4.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://models/bandage.png"
-dest_files=["res://.godot/imported/bandage.png-c316e8acd33fc3afb27d56ff2d414099.s3tc.ctex"]
+source_file="res://item/models/bandage.png"
+dest_files=["res://.godot/imported/bandage.png-0196eb0ffb56e1c97c321b5ed13ee4e4.s3tc.ctex"]
 
 [params]
 
