@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://ctary5fgl30n8"
-path="res://.godot/imported/pistol_gunshot.wav-6adde6dacbf1c49a41730a46d9eb55c1.sample"
+path="res://.godot/imported/pistol_gunshot.wav-0bba689f495c119bbc28428b47000e47.sample"
 
 [deps]
 
-source_file="res://item/pistol_gunshot.wav"
-dest_files=["res://.godot/imported/pistol_gunshot.wav-6adde6dacbf1c49a41730a46d9eb55c1.sample"]
+source_file="res://item/sfx/pistol_gunshot.wav"
+dest_files=["res://.godot/imported/pistol_gunshot.wav-0bba689f495c119bbc28428b47000e47.sample"]
 
 [params]
 

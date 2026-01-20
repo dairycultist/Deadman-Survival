@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dlgbfl4l84hj2"
-path="res://.godot/imported/zombie_attack.wav-2be5dbced551dc465098fe8d993225f2.sample"
+path="res://.godot/imported/zombie_attack.wav-1d6e6556cadbeb28a2ce10a12dc55db2.sample"
 
 [deps]
 
-source_file="res://zombie/sounds/zombie_attack.wav"
-dest_files=["res://.godot/imported/zombie_attack.wav-2be5dbced551dc465098fe8d993225f2.sample"]
+source_file="res://zombie/sfx/zombie_attack.wav"
+dest_files=["res://.godot/imported/zombie_attack.wav-1d6e6556cadbeb28a2ce10a12dc55db2.sample"]
 
 [params]
 

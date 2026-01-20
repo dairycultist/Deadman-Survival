@@ -1,6 +1,7 @@
 extends Item
 
 @export var gunshot_sound: AudioStream
+@export var dryfire_sound: AudioStream
 
 func _ready() -> void:
 	super._ready()

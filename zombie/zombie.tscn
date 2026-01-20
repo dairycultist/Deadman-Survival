@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://sxxmd5kxu0sx"]
 
 [ext_resource type="Script" uid="uid://ck3jutn4h76ts" path="res://zombie/zombie.gd" id="1_uiaus"]
-[ext_resource type="AudioStream" uid="uid://c68xj8dfal7hb" path="res://zombie/sounds/zombie_hit.wav" id="2_ixsl6"]
-[ext_resource type="AudioStream" uid="uid://60nuwe86yfij" path="res://zombie/sounds/zombie_idle.wav" id="2_ymihc"]
-[ext_resource type="AudioStream" uid="uid://dlgbfl4l84hj2" path="res://zombie/sounds/zombie_attack.wav" id="3_s7rjo"]
+[ext_resource type="AudioStream" uid="uid://c68xj8dfal7hb" path="res://zombie/sfx/zombie_hit.wav" id="2_ixsl6"]
+[ext_resource type="AudioStream" uid="uid://60nuwe86yfij" path="res://zombie/sfx/zombie_idle.wav" id="2_ymihc"]
+[ext_resource type="AudioStream" uid="uid://dlgbfl4l84hj2" path="res://zombie/sfx/zombie_attack.wav" id="3_s7rjo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tlwt5"]
 
