@@ -100,3 +100,14 @@ bbcode_enabled = true
 text = "[font_size=24][color=white][b]Name[/b][br][/color][color=gray][i]Description.[/i][/color][/font_size]"
 fit_content = true
 autowrap_mode = 0
+
+[node name="HealthLabel" type="RichTextLabel" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -111.0
+offset_right = 449.0
+grow_vertical = 0
+bbcode_enabled = true
+text = "health here"
+vertical_alignment = 2

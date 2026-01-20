@@ -5,9 +5,12 @@ extends CharacterBody3D
 @export var mouse_sensitivity: float = 0.3
 @export var interact_range: float = 2.5
 
+@export_category("Survival")
+@export_range(0, 100, 1) var _health: int = 100
+
 @export_category("Movement")
-@export var drag: float = 8
-@export var accel: float = 50
+@export var _drag: float = 8
+@export var _accel: float = 50
 
 var camera_pitch := 0.0
 
@@ -19,10 +22,15 @@ func get_camera() -> Camera3D:
 func get_backpack():
 	return $Camera/Backpack
 
+func damage(amt: int):
+	_health -= amt
+	$HealthLabel.text = "[font_size=48]" + str(_health) + "/100 HP[/font_size]"
+
 func _ready() -> void:
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$Camera/Backpack.visible = false
+	damage(0)
 
 func _process(delta: float) -> void:
 	
@@ -31,11 +39,11 @@ func _process(delta: float) -> void:
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if direction:
-		velocity.x += direction.x * accel * delta
-		velocity.z += direction.z * accel * delta
+		velocity.x += direction.x * _accel * delta
+		velocity.z += direction.z * _accel * delta
 	
 	velocity += get_gravity() * 2.5 * delta
-	velocity = lerp(velocity, Vector3.ZERO, delta * drag)
+	velocity = lerp(velocity, Vector3.ZERO, delta * _drag)
 	
 	move_and_slide()
 	
