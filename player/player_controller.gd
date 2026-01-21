@@ -190,9 +190,25 @@ func _input(event):
 				# start equip animation
 				equip_animation_fac = 1.0
 	
-	elif event.is_action_pressed("alt_fire"): # drop
+	elif event.is_action_pressed("alt_fire"): # drop from inventory
 		
 		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+			
+			if look_item:
+				look_item.set_rigidbody(true)
+				look_item.reparent(ROOT_NODE)
+	
+	elif event.is_action_pressed("drop"): # drop from hand or inventory
+		
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			
+			var item: Item = $Camera/HoldAnchor.get_child(0)
+			
+			if item:
+				item.set_rigidbody(true)
+				item.reparent(ROOT_NODE)
+		
+		else:
 			
 			if look_item:
 				look_item.set_rigidbody(true)
