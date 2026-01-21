@@ -73,7 +73,7 @@ func _process(delta: float) -> void:
 			equip_animation_fac = 0.0
 			
 			# process equipped item
-			$Camera/HoldAnchor.get_child(0).process_when_held(self)
+			$Camera/HoldAnchor.get_child(0).process_when_held(delta, self)
 	
 	# hp heal/hurt animation
 	if hp_animation_is_heal:
