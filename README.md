@@ -10,12 +10,9 @@
 	ramping up over time should challenge intermediate players who already are
 	comfortable in the early game, not the beginner players who don't know what
 	they're doing.
-- You can craft but you can't build, so you're constantly on foot
-- Diegetic inventory system
-  - Opening your inventory makes a backpack appear in front of you with your items inside
-  - Separate slots for items (ammo, bandages, crafting items, etc) and weapons
-	- Only has a few slots (the game won't have too many items), making resource management important
-	- Limiting the player inventory discourages aggressive combat, encouraging tactical retreats and risk-reward scenarios
+  - Maybe have an end-goal, like "escape the island" by discovering stuff and crafting and whatever
+- You can craft (with scavenged crafting items) but you can't build, so you're constantly on foot
+- Limiting the player inventory discourages aggressive combat, encouraging resource management, tactical retreats, and risk-reward scenarios
 - I don't think we need chests; Base building is not a thing and looting can just be from items placed in the world
 
 and it has dog ahh graphics and booba and the game gets a cult following then we win,

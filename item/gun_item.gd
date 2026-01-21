@@ -4,17 +4,17 @@ extends Item
 @export var dryfire_sound: AudioStream
 
 @export var shots_per_second: float = 3
-@export var max_ammo: int = 10
+@export var ammo: int
 
-var ammo: int
+@export var accepted_ammo_type: String = "pistol"
+
 var base_item_name: String
 var shot_cooldown: float
 
 func _ready() -> void:
 	super._ready()
-	ammo = max_ammo
 	base_item_name = item_name
-	item_name = base_item_name + " (" + str(ammo) + "/" + str(max_ammo) + ")"
+	item_name = base_item_name + " (" + str(ammo) + ")"
 
 func _process(delta: float) -> void:
 	
@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 
 func process_when_held(delta: float, player: Creature):
 	
-	player.set_item_label(str(ammo) + "/" + str(max_ammo))
+	player.set_item_label(str(ammo))
 	
 	# use player.get_backpack().get_all_items() for finding ammo during reload
 	
@@ -44,7 +44,7 @@ func process_when_held(delta: float, player: Creature):
 			$Mesh/MuzzleFlash.rotation.z = randf_range(0.0, PI * 2.0)
 			
 			ammo -= 1
-			item_name = base_item_name + " (" + str(ammo) + "/" + str(max_ammo) + ")"
+			item_name = base_item_name + " (" + str(ammo) + ")"
 		
 			GlobalAudio.play(gunshot_sound, 1.0, randf_range(0.95, 1.0))
 		
