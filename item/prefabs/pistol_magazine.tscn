@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b5et8cc5v2pmi"]
 
-[ext_resource type="Script" uid="uid://l8s3ypcg5wml" path="res://item/item.gd" id="1_hsnpj"]
+[ext_resource type="Script" uid="uid://q3x3yi7mx224" path="res://item/ammo_item.gd" id="1_xe43p"]
 [ext_resource type="Shader" uid="uid://b4re70be6kgm1" path="res://item/item.gdshader" id="2_bte3w"]
 [ext_resource type="ArrayMesh" uid="uid://eiqx334ur2nd" path="res://item/models/pistol_magazine.obj" id="3_ytp7k"]
 
@@ -16,7 +16,7 @@ shader_parameter/highlight_amt = 0.0
 
 [node name="PistolMagazine" type="RigidBody3D"]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
-script = ExtResource("1_hsnpj")
+script = ExtResource("1_xe43p")
 item_name = "Pistol Magazine"
 item_description = "Contains 15 rounds of pistol ammunition."
 

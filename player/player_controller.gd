@@ -76,7 +76,7 @@ func _process(delta: float) -> void:
 			
 			# process equipped item
 			if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-				$Camera/HoldAnchor.get_child(0).process_when_held(delta, self)
+				$Camera/HoldAnchor.get_child(0).process_when_equipped(delta, self)
 	
 	# hp heal/hurt animation
 	if hp_animation_is_heal:
@@ -161,35 +161,53 @@ func _input(event):
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and look_item:
 			get_backpack().attempt_store_item(look_item)
 		
-	elif event.is_action_pressed("fire"): # equip
+	elif event.is_action_pressed("fire"): # use/equip
 		
 		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 			
 			if look_item:
 				
-				# empty the slot
-				look_item.reparent(ROOT_NODE)
-				
-				# can't equip something without first handling what's already equipped
-				if $Camera/HoldAnchor.get_child_count() == 1:
+				if look_item is AmmoItem and $Camera/HoldAnchor.get_child_count() == 1 and $Camera/HoldAnchor.get_child(0) is GunItem:
 					
-					var item: Item = $Camera/HoldAnchor.get_child(0)
+					# if you click on an ammo_item in the backpack
+					# and you're holding a weapon, if it accepts the
+					# corresponding ammo type, it reloads it
+					var gun: GunItem = $Camera/HoldAnchor.get_child(0)
 					
-					# if we can't store what's currently equipped, drop it
-					if not get_backpack().attempt_store_item(item):
-						item.set_rigidbody(true)
-						item.reparent(ROOT_NODE)
+					if gun.accepted_ammo_type == look_item.ammo_type:
+						gun.ammo = look_item.ammo_amount
+						look_item.queue_free()
+						gun.on_equipped(self) # trigger gun reequip (updates ammo display)
 					
-					# clear item label, as the previously equipped item my have set it
-					set_item_label("")
+				else:
 				
-				# move the item to the HoldAnchor
-				look_item.reparent($Camera/HoldAnchor)
-				look_item.position = Vector3.ZERO
-				look_item.rotation = Vector3(0, 0, 0)
-				
-				# start equip animation
-				equip_animation_fac = 1.0
+					# empty the slot
+					look_item.reparent(ROOT_NODE)
+					
+					# can't equip something without first handling what's already equipped
+					if $Camera/HoldAnchor.get_child_count() == 1:
+						
+						var item: Item = $Camera/HoldAnchor.get_child(0)
+						
+						# if we can't store what's currently equipped, drop it
+						if not get_backpack().attempt_store_item(item):
+							item.set_rigidbody(true)
+							item.reparent(ROOT_NODE)
+							item.on_deequipped(self)
+						
+						# clear item label, as the previously equipped item my have set it
+						set_item_label("")
+					
+					# move the item to the HoldAnchor
+					look_item.reparent($Camera/HoldAnchor)
+					look_item.position = Vector3.ZERO
+					look_item.rotation = Vector3(0, 0, 0)
+					
+					# start equip animation
+					equip_animation_fac = 1.0
+					
+					# trigger item equip
+					look_item.on_equipped(self)
 	
 	elif event.is_action_pressed("alt_fire"): # drop from inventory
 		
@@ -198,6 +216,7 @@ func _input(event):
 			if look_item:
 				look_item.set_rigidbody(true)
 				look_item.reparent(ROOT_NODE)
+				look_item.on_deequipped(self)
 	
 	elif event.is_action_pressed("drop"): # drop from hand or inventory
 		
@@ -208,12 +227,14 @@ func _input(event):
 			if item:
 				item.set_rigidbody(true)
 				item.reparent(ROOT_NODE)
+				item.on_deequipped(self)
 		
 		else:
 			
 			if look_item:
 				look_item.set_rigidbody(true)
 				look_item.reparent(ROOT_NODE)
+				look_item.on_deequipped(self)
 	
 	elif event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		

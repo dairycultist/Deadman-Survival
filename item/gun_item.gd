@@ -1,4 +1,5 @@
 extends Item
+class_name GunItem
 
 @export var gunshot_sound: AudioStream
 @export var dryfire_sound: AudioStream
@@ -22,11 +23,10 @@ func _process(delta: float) -> void:
 	$Mesh.position.z = lerp($Mesh.position.z, 0.0, 10.0 * delta)
 	$Mesh/MuzzleFlash.scale = lerp($Mesh/MuzzleFlash.scale, Vector3.ZERO, 10.0 * delta)
 
-func process_when_held(delta: float, player: Creature):
-	
+func on_equipped(player: Creature):
 	player.set_item_label(str(ammo))
-	
-	# use player.get_backpack().get_all_items() for finding ammo during reload
+
+func process_when_equipped(delta: float, player: Creature):
 	
 	if shot_cooldown > 0.0:
 		
@@ -45,6 +45,7 @@ func process_when_held(delta: float, player: Creature):
 			
 			ammo -= 1
 			item_name = base_item_name + " (" + str(ammo) + ")"
+			player.set_item_label(str(ammo))
 		
 			GlobalAudio.play(gunshot_sound, 1.0, randf_range(0.95, 1.0))
 		

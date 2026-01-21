@@ -11,7 +11,7 @@ func _ready() -> void:
 	super._ready()
 	item_description = "Heals " + str(health_per_second * seconds_of_healing) + " HP over " + str(seconds_of_healing) + " seconds."
 
-func process_when_held(_delta: float, player: Creature):
+func process_when_equipped(_delta: float, player: Creature):
 	
 	if Input.is_action_just_pressed("fire"):
 	

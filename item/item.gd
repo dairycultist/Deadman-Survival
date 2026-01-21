@@ -33,5 +33,11 @@ func set_rigidbody(value: bool):
 	freeze = not value
 	get_child(0).disabled = not value # collider
 
-func process_when_held(_delta: float, _player: Creature):
+func on_equipped(_player: Creature):
+	pass
+
+func on_deequipped(_player: Creature):
+	pass
+
+func process_when_equipped(_delta: float, _player: Creature):
 	pass
