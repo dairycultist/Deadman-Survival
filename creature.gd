@@ -8,6 +8,14 @@ class_name Creature
 ## audio source.
 @export var hit_sound: AudioStream
 
+func _ready() -> void:
+	
+	# creatures are collision layer 2; they collide with themselves and the
+	# terrain (collision layer 1), but not items
+	set_collision_layer_value(1, false)
+	set_collision_layer_value(2, true)
+	set_collision_mask_value(2, true)
+
 func change_health(amt: int) -> int: # returns amt it actually changed by
 	
 	amt = min(amt, _max_health - _health)

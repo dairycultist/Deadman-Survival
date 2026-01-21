@@ -7,6 +7,12 @@ class_name Item
 
 func _ready() -> void:
 	
+	# items are collision layer 3; they collide with themselves and the terrain
+	# (collision layer 1), but not creatures
+	set_collision_layer_value(1, false)
+	set_collision_layer_value(3, true)
+	set_collision_mask_value(3, true)
+	
 	# uniquify material
 	if $Mesh.material_override == null:
 		$Mesh.material_override = $Mesh.surface_get_material(0).duplicate()

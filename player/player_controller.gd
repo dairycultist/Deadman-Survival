@@ -39,6 +39,7 @@ func change_health(amt: int) -> int:
 	return amt
 
 func _ready() -> void:
+	super._ready()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	get_backpack().visible = false
 	$Health/Label.text = " " + str(_health)
