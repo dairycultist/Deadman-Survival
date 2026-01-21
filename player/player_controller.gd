@@ -67,13 +67,15 @@ func _process(delta: float) -> void:
 		# equip animation
 		$Camera/HoldAnchor.get_child(0).position.y += -equip_animation_fac * equip_animation_fac * 0.5
 		
+		# equip timer
 		if equip_animation_fac - delta * 4.0 > 0.0:
 			equip_animation_fac -= delta * 4.0 # decrease at 240 bpm
 		else:
 			equip_animation_fac = 0.0
 			
 			# process equipped item
-			$Camera/HoldAnchor.get_child(0).process_when_held(delta, self)
+			if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+				$Camera/HoldAnchor.get_child(0).process_when_held(delta, self)
 	
 	# hp heal/hurt animation
 	if hp_animation_is_heal:
