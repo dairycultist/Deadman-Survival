@@ -3,6 +3,7 @@ class_name GunItem
 
 @export var gunshot_sound: AudioStream
 @export var dryfire_sound: AudioStream
+@export var reload_sound: AudioStream
 
 @export var shots_per_second: float = 3
 @export var ammo: int
@@ -25,6 +26,7 @@ func _process(delta: float) -> void:
 
 func on_equipped(player: Creature):
 	player.set_item_label(str(ammo))
+	GlobalAudio.play(reload_sound, 1.0, randf_range(0.95, 1.0))
 
 func process_when_equipped(delta: float, player: Creature):
 	

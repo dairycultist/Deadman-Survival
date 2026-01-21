@@ -177,7 +177,7 @@ func _input(event):
 					if gun.accepted_ammo_type == look_item.ammo_type:
 						gun.ammo = look_item.ammo_amount
 						look_item.queue_free()
-						gun.on_equipped(self) # trigger gun reequip (updates ammo display)
+						gun.on_equipped(self) # trigger gun reequip (updates ammo display and plays sound)
 					
 				else:
 				
