@@ -31,8 +31,8 @@ func change_health(amt: int) -> int:
 	amt = super.change_health(amt)
 	
 	if amt != 0:
-		$HealthLabel.text = str(_health) + "/100 HP"
-		$HealthLabel/Bar.value = _health
+		$Health/Label.text = " " + str(_health)
+		$Health/Bar.value = _health
 		hp_animation_fac = 1.0
 		hp_animation_is_heal = amt > 0
 	
@@ -41,7 +41,7 @@ func change_health(amt: int) -> int:
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	get_backpack().visible = false
-	$HealthLabel.text = str(_health) + "/100 HP"
+	$Health/Label.text = " " + str(_health)
 
 func _process(delta: float) -> void:
 	
@@ -77,10 +77,10 @@ func _process(delta: float) -> void:
 	
 	# hp heal/hurt animation
 	if hp_animation_is_heal:
-		$HealthLabel.modulate = Color(1.0 - hp_animation_fac, 1.0, 1.0 - hp_animation_fac * hp_animation_fac, 1.0)
+		$Health.modulate = Color(1.0 - hp_animation_fac, 1.0, 1.0 - hp_animation_fac * hp_animation_fac, 1.0)
 	else:
-		$HealthLabel.modulate = Color(1.0, 1.0 - hp_animation_fac * hp_animation_fac, 1.0 - hp_animation_fac, 1.0)
-	$HealthLabel.position.x = sin(hp_animation_fac) * hp_animation_fac * 10.0
+		$Health.modulate = Color(1.0, 1.0 - hp_animation_fac * hp_animation_fac, 1.0 - hp_animation_fac, 1.0)
+	$Health/Label.position.x = sin(hp_animation_fac) * hp_animation_fac * 10.0
 	
 	if hp_animation_fac - delta * 2.666 > 0.0:
 		hp_animation_fac -= delta * 2.666 # decrease at 160 bpm
