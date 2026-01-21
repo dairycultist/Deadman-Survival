@@ -1,5 +1,7 @@
 extends Item
 
+@export var use_sound: AudioStream
+
 @export var health_per_second: int = 1
 @export var seconds_of_healing: int = 10
 
@@ -18,6 +20,8 @@ func process_when_held(_delta: float, player: Creature):
 		if thread.start(_apply_healing.bind(player)) != OK:
 			printerr("Could not start thread.")
 		else:
+			
+			GlobalAudio.play(use_sound)
 			
 			# just move the item somewhere far away while it heals the player
 			reparent(get_tree().root.get_child(0))

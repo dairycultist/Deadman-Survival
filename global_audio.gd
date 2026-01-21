@@ -16,6 +16,9 @@ func _ready() -> void:
 
 func play(sound: AudioStream, volume: float = 1.0, pitch: float = 1.0):
 	
+	if not sound:
+		return
+	
 	var source := _sources[_available_source_index]
 	_available_source_index = (_available_source_index + 1) % _sources.size()
 	
@@ -25,6 +28,9 @@ func play(sound: AudioStream, volume: float = 1.0, pitch: float = 1.0):
 	source.play()
 
 func play_at(sound: AudioStream, position: Vector3, volume: float = 1.0, pitch: float = 1.0):
+	
+	if not sound:
+		return
 	
 	var source := _sources_3D[_available_source_index]
 	_available_source_3D_index = (_available_source_3D_index + 1) % _sources_3D.size()

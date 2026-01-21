@@ -1,0 +1,35 @@
+[gd_scene load_steps=9 format=3 uid="uid://cjo6hfryoxnbh"]
+
+[ext_resource type="Script" uid="uid://6nx83ptfxt7n" path="res://item/healing_item.gd" id="1_kj0uf"]
+[ext_resource type="AudioStream" uid="uid://cy1l6wt1jxqn" path="res://item/sfx/medicine_use.wav" id="2_ckxce"]
+[ext_resource type="Shader" uid="uid://b4re70be6kgm1" path="res://item/item.gdshader" id="2_gxn7u"]
+[ext_resource type="Texture2D" uid="uid://bxb80q0uq4xcr" path="res://item/models/bandage.png" id="3_ckxce"]
+[ext_resource type="Texture2D" uid="uid://lipl62cpdrek" path="res://item/models/bandage_reflective.png" id="4_nvyrk"]
+[ext_resource type="ArrayMesh" uid="uid://cyx6u2ayxyh3g" path="res://item/models/bandage.obj" id="5_2t6kg"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_pcw5p"]
+height = 0.35
+radius = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mui8a"]
+render_priority = 0
+shader = ExtResource("2_gxn7u")
+shader_parameter/tex = ExtResource("3_ckxce")
+shader_parameter/tex_reflective = ExtResource("4_nvyrk")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/highlight_amt = 0.0
+
+[node name="Medicine" type="RigidBody3D"]
+script = ExtResource("1_kj0uf")
+use_sound = ExtResource("2_ckxce")
+seconds_of_healing = 50
+item_name = "Krokodil"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_pcw5p")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_mui8a")
+mesh = ExtResource("5_2t6kg")
+skeleton = NodePath("../..")

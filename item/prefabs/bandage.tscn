@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bt8egdmyuyrio"]
+[gd_scene load_steps=9 format=3 uid="uid://bt8egdmyuyrio"]
 
 [ext_resource type="ArrayMesh" uid="uid://cyx6u2ayxyh3g" path="res://item/models/bandage.obj" id="1_1mj4e"]
 [ext_resource type="Script" uid="uid://6nx83ptfxt7n" path="res://item/healing_item.gd" id="1_wrswy"]
+[ext_resource type="AudioStream" uid="uid://cs035vft4a78q" path="res://item/sfx/bandage_use.wav" id="2_ywulv"]
 [ext_resource type="Shader" uid="uid://b4re70be6kgm1" path="res://item/item.gdshader" id="3_w6ngn"]
 [ext_resource type="Texture2D" uid="uid://bxb80q0uq4xcr" path="res://item/models/bandage.png" id="4_8y8bc"]
 [ext_resource type="Texture2D" uid="uid://lipl62cpdrek" path="res://item/models/bandage_reflective.png" id="5_8y8bc"]
@@ -21,6 +22,7 @@ shader_parameter/highlight_amt = 0.0
 
 [node name="Bandage" type="RigidBody3D"]
 script = ExtResource("1_wrswy")
+use_sound = ExtResource("2_ywulv")
 health_per_second = 2
 item_name = "Bandage"
 
