@@ -20,6 +20,7 @@ func _process(delta: float) -> void:
 	
 	$Mesh.rotation.x = lerp($Mesh.rotation.x, 0.0, 10.0 * delta)
 	$Mesh.position.z = lerp($Mesh.position.z, 0.0, 10.0 * delta)
+	$Mesh/MuzzleFlash.scale = lerp($Mesh/MuzzleFlash.scale, Vector3.ZERO, 10.0 * delta)
 
 func process_when_held(delta: float, player: Creature):
 	
@@ -37,8 +38,10 @@ func process_when_held(delta: float, player: Creature):
 		
 		if ammo > 0:
 			
-			$Mesh.rotation.x = 0.3
+			$Mesh.rotation.x = 0.1
 			$Mesh.position.z = 0.2
+			$Mesh/MuzzleFlash.scale = Vector3.ONE
+			$Mesh/MuzzleFlash.rotation.z = randf_range(0.0, PI * 2.0)
 			
 			ammo -= 1
 			item_name = base_item_name + " (" + str(ammo) + "/" + str(max_ammo) + ")"

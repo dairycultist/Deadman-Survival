@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxbcos0w0waue"]
+[gd_scene load_steps=11 format=3 uid="uid://bxbcos0w0waue"]
 
 [ext_resource type="Script" uid="uid://bqs45nxx7a27c" path="res://item/gun_item.gd" id="1_uhhsj"]
 [ext_resource type="AudioStream" uid="uid://ctary5fgl30n8" path="res://item/sfx/pistol_gunshot.wav" id="2_8jb7s"]
 [ext_resource type="Shader" uid="uid://b4re70be6kgm1" path="res://item/item.gdshader" id="2_47bfx"]
 [ext_resource type="ArrayMesh" uid="uid://cp4or3mbrj0nd" path="res://item/models/pistol.obj" id="3_e40hb"]
 [ext_resource type="AudioStream" uid="uid://bl13qyy6li4mh" path="res://item/sfx/pistol_dryfire.wav" id="3_jiblw"]
+[ext_resource type="Texture2D" uid="uid://tib8q502njso" path="res://item/models/muzzle_flash.png" id="6_eylw4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_036b0"]
 size = Vector3(0.087890625, 0.4142456, 0.60009766)
@@ -15,6 +16,20 @@ shader = ExtResource("2_47bfx")
 shader_parameter/color = Color(0.15127608, 0.15127608, 0.15127608, 1)
 shader_parameter/metallic = 0.0
 shader_parameter/highlight_amt = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pe4aj"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+shading_mode = 0
+specular_mode = 2
+disable_ambient_light = true
+disable_fog = true
+disable_specular_occlusion = true
+albedo_texture = ExtResource("6_eylw4")
+
+[sub_resource type="QuadMesh" id="QuadMesh_00olf"]
+size = Vector2(0.5, 0.5)
 
 [node name="Pistol" type="RigidBody3D"]
 transform = Transform3D(-4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 0.9999999, 0, 0, 0)
@@ -34,4 +49,10 @@ shape = SubResource("BoxShape3D_036b0")
 [node name="Mesh" type="MeshInstance3D" parent="."]
 material_override = SubResource("ShaderMaterial_pkg7o")
 mesh = ExtResource("3_e40hb")
+skeleton = NodePath("../..")
+
+[node name="MuzzleFlash" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(0.9999997, 2.1316282e-14, 0, -2.1316282e-14, 0.9999997, 0, 0, 0, 1, 6.68145e-09, 0.15285371, -0.4526207)
+material_override = SubResource("StandardMaterial3D_pe4aj")
+mesh = SubResource("QuadMesh_00olf")
 skeleton = NodePath("../..")
