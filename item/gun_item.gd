@@ -7,6 +7,7 @@ class_name GunItem
 
 @export var shots_per_second: float = 3
 @export var ammo: int
+@export var damage: int = 10
 
 @export var accepted_ammo_type: String = "pistol"
 
@@ -69,7 +70,7 @@ func process_when_equipped(delta: float, player: Creature):
 			var result = get_world_3d().direct_space_state.intersect_ray(query)
 			
 			if result and result.collider is Creature:
-				result.collider.change_health(-randi_range(8, 14))
+				result.collider.change_health(-damage)
 		
 		else:
 			GlobalAudio.play(dryfire_sound, 1.0, randf_range(0.95, 1.0))
