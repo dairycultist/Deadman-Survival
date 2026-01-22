@@ -1,5 +1,7 @@
 shader_type spatial;
 
+uniform sampler2D albedo : source_color;
+uniform sampler2D normal : hint_normal;
 uniform sampler2D snow_albedo : source_color;
 uniform sampler2D snow_normal : hint_normal;
 
@@ -20,14 +22,14 @@ void vertex() {
 
 void fragment() {
 	
+	vec3      n = TBN *  normalize(texture(     normal, UV).xyz * 2.0 - 1.0);
 	vec3 snow_n = TBN * -normalize(texture(snow_normal, UV).xyz * 2.0 - 1.0);
+	                 // ^ I think my normal texture is inverted
 	
-	vec3 normal = (INV_VIEW_MATRIX * vec4(snow_n, 0.0)).xyz;
+	float fac = smoothstep(-blend, blend, (INV_VIEW_MATRIX * vec4(n, 0.0)).y);
 	
-	float fac = smoothstep(-blend, blend, normal.y);
-	
-	ALBEDO    = mix(vec3(0.), texture(snow_albedo, UV).rgb, fac);
+	ALBEDO    = mix(texture(albedo, UV).rgb, texture(snow_albedo, UV).rgb, fac);
 	SPECULAR  = mix(0.5, 1., fac);
 	ROUGHNESS = mix(1.0, .7, fac);
-	NORMAL    = mix(NORMAL, snow_n, fac);
+	NORMAL    = mix(n, snow_n, fac);
 }
