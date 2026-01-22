@@ -127,6 +127,16 @@ func _process(delta: float) -> void:
 		$ItemHover.visible  = true
 		
 		$ItemTooltip/Text.text = "[font_size=28][color=white][b]" + look_item.item_name + "[/b][br][/color][color=gray][i]" + look_item.item_description + "[/i][/color][/font_size]"
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			# in-world picking up
+			$ItemTooltip/Text.text += "[color=gray][br][br]E pick up[/color]"
+		elif look_item is AmmoItem and $Camera/HoldAnchor.get_child_count() == 1 and $Camera/HoldAnchor.get_child(0) is GunItem and $Camera/HoldAnchor.get_child(0).can_reload(look_item):
+			# reloadable ammo
+			$ItemTooltip/Text.text += "[color=gray][br][br]LMB reload · RMB drop[/color]"
+		else:
+			# equippable item
+			$ItemTooltip/Text.text += "[color=gray][br][br]LMB equip · RMB drop[/color]"
+		
 		$ItemTooltip.position  = rect.position + Vector2(rect.size.x + $ItemHover.border_width / 2, -$ItemHover.border_width / 2)
 		$ItemTooltip.size      = $ItemTooltip/Text.size + Vector2(20.0, 20.0)
 		
@@ -161,35 +171,34 @@ func _input(event):
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and look_item:
 			get_backpack().attempt_store_item(look_item)
 		
-	elif event.is_action_pressed("fire"): # use/equip
+	elif event.is_action_pressed("fire"): # reload/equip
 		
 		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 			
 			if look_item:
 				
-				if look_item is AmmoItem and $Camera/HoldAnchor.get_child_count() == 1 and $Camera/HoldAnchor.get_child(0) is GunItem:
+				var equipped_item: Item = $Camera/HoldAnchor.get_child(0) if $Camera/HoldAnchor.get_child_count() == 1 else null
+				
+				# reload
+				if look_item is AmmoItem and equipped_item is GunItem and equipped_item.attempt_reload(look_item):
 					
-					var gun: GunItem = $Camera/HoldAnchor.get_child(0)
-					
-					if gun.attempt_reload(look_item):
-						look_item.queue_free()
-						gun.on_equipped(self) # trigger gun reequip (updates ammo display and plays sound)
-					
+					look_item.queue_free()
+					equipped_item.on_equipped(self) # trigger gun reequip (updates ammo display and plays sound)
+				
+				# equip
 				else:
 				
 					# empty the slot
 					look_item.reparent(ROOT_NODE)
 					
 					# can't equip something without first handling what's already equipped
-					if $Camera/HoldAnchor.get_child_count() == 1:
-						
-						var item: Item = $Camera/HoldAnchor.get_child(0)
+					if equipped_item:
 						
 						# if we can't store what's currently equipped, drop it
-						if not get_backpack().attempt_store_item(item):
-							item.set_rigidbody(true)
-							item.reparent(ROOT_NODE)
-							item.on_deequipped(self)
+						if not get_backpack().attempt_store_item(equipped_item):
+							equipped_item.set_rigidbody(true)
+							equipped_item.reparent(ROOT_NODE)
+							equipped_item.on_deequipped(self)
 						
 						# clear item label, as the previously equipped item my have set it
 						set_item_label("")
