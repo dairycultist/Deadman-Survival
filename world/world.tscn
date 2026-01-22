@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://deknyv4y0bmnx"]
 
-[ext_resource type="Texture2D" uid="uid://c2q633o6tv2f0" path="res://world/debug.png" id="1_fn3g3"]
+[ext_resource type="Texture2D" uid="uid://dlf2tx4nidwo" path="res://snow.png" id="1_ai45w"]
 [ext_resource type="Script" uid="uid://bqn3p1o4312am" path="res://world/zombie_spawner.gd" id="2_sc4t8"]
 [ext_resource type="PackedScene" uid="uid://ctp0v8b07jg7a" path="res://player/player.tscn" id="3_ai45w"]
 [ext_resource type="PackedScene" uid="uid://bxbcos0w0waue" path="res://item/prefabs/pistol.tscn" id="4_4papg"]
@@ -13,7 +13,9 @@
 sky_top_color = Color(0.2996212, 0.5909847, 0.8508276, 1)
 sky_horizon_color = Color(0.6084065, 0.7247295, 0.8060412, 1)
 sky_curve = 0.17230427
+ground_bottom_color = Color(0.12656847, 0.27515438, 0.43554953, 1)
 ground_horizon_color = Color(0.60784316, 0.7254902, 0.80784315, 1)
+ground_curve = 0.003535546
 sun_curve = 0.11367909
 
 [sub_resource type="Sky" id="Sky_4papg"]
@@ -23,14 +25,14 @@ sky_material = SubResource("ProceduralSkyMaterial_ai45w")
 background_mode = 2
 sky = SubResource("Sky_4papg")
 ambient_light_source = 2
-ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_color = Color(0.42980433, 0.71569633, 1, 1)
 ambient_light_energy = 0.4
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gv5m4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fj7yv"]
-albedo_texture = ExtResource("1_fn3g3")
-uv1_scale = Vector3(50, 50, 50)
+albedo_texture = ExtResource("1_ai45w")
+uv1_scale = Vector3(10, 10, 10)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_f3sb7"]
 size = Vector2(100, 100)
