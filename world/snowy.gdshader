@@ -20,14 +20,16 @@ void vertex() {
 
 void fragment() {
 	
-	NORMAL = TBN * -normalize(texture(snow_normal, UV).xyz * 2.0 - 1.0);
+	vec3 snow_n = TBN * -normalize(texture(snow_normal, UV).xyz * 2.0 - 1.0);
 	
-	vec3 normal = (INV_VIEW_MATRIX * vec4(NORMAL, 0.0)).xyz + texture(snow_normal, UV).rgb;
+	vec3 normal = (INV_VIEW_MATRIX * vec4(snow_n, 0.0)).xyz;
 	
-	float fac = smoothstep(-blend + 0.5, blend + 0.5, normal.y);
+	float fac = smoothstep(-blend, blend, normal.y);
 	
-	ALBEDO = mix(vec3(0.), mix(texture(snow_albedo, UV).rgb, vec3(1.), fac * 0.5), fac);
+	vec3 snow_c = mix(texture(snow_albedo, UV).rgb, vec3(1.), fac * 0.5);
 	
-	SPECULAR = 1.0;
-	ROUGHNESS = 1.0;
+	ALBEDO    = mix(vec3(0.), snow_c, fac);
+	SPECULAR  = mix(0.5, 1., fac);
+	ROUGHNESS = mix(1.0, .7, fac);
+	NORMAL    = mix(NORMAL, snow_n, fac);
 }
