@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://deknyv4y0bmnx"]
+[gd_scene load_steps=16 format=3 uid="uid://deknyv4y0bmnx"]
 
-[ext_resource type="Texture2D" uid="uid://dlf2tx4nidwo" path="res://snow.png" id="1_ai45w"]
+[ext_resource type="Texture2D" uid="uid://dlf2tx4nidwo" path="res://world/snow.png" id="1_ai45w"]
+[ext_resource type="Texture2D" uid="uid://b75oji2aufbia" path="res://world/snow_normal.png" id="2_4papg"]
 [ext_resource type="Script" uid="uid://bqn3p1o4312am" path="res://world/zombie_spawner.gd" id="2_sc4t8"]
 [ext_resource type="PackedScene" uid="uid://ctp0v8b07jg7a" path="res://player/player.tscn" id="3_ai45w"]
 [ext_resource type="PackedScene" uid="uid://bxbcos0w0waue" path="res://item/prefabs/pistol.tscn" id="4_4papg"]
@@ -32,6 +33,8 @@ ambient_light_energy = 0.4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fj7yv"]
 albedo_texture = ExtResource("1_ai45w")
+normal_enabled = true
+normal_texture = ExtResource("2_4papg")
 uv1_scale = Vector3(10, 10, 10)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_f3sb7"]
@@ -53,8 +56,11 @@ material_override = SubResource("StandardMaterial3D_fj7yv")
 mesh = SubResource("PlaneMesh_f3sb7")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.70710677, 0.49999997, -0.49999997, 0, 0.7071068, 0.7071068, 0.7071068, -0.5, 0.5, 0, 0, 0)
+transform = Transform3D(0.96224535, -0.073025696, -0.2622049, 0.061131947, -0.8807414, 0.46963513, -0.26523012, -0.46793333, -0.843025, 0, 0, 0)
 light_energy = 1.5
+shadow_enabled = true
+shadow_bias = 0.03
+shadow_blur = 2.25
 
 [node name="ZombieSpawner" type="Node3D" parent="." node_paths=PackedStringArray("spawning_surface", "spawn_center")]
 script = ExtResource("2_sc4t8")

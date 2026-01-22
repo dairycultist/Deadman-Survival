@@ -48,6 +48,7 @@ weapon_slots = [NodePath("WeaponSlot")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Camera/Backpack"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
+cast_shadow = 0
 mesh = SubResource("BoxMesh_4flbx")
 
 [node name="ItemSlot1" type="Node3D" parent="Camera/Backpack"]
