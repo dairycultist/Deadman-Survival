@@ -24,6 +24,18 @@ func _process(delta: float) -> void:
 	$Mesh.position.z = lerp($Mesh.position.z, 0.0, 10.0 * delta)
 	$Mesh/MuzzleFlash.scale = lerp($Mesh/MuzzleFlash.scale, Vector3.ZERO, 10.0 * delta)
 
+func attempt_reload(ammo_item: AmmoItem) -> bool:
+	
+	# if you click on an ammo_item in the backpack and you're holding a gun:
+	# - if the gun accepts the corresponding ammo type, and
+	# - it has less ammo than what the ammo_item would provide
+	# then it reloads it
+	if accepted_ammo_type == ammo_item.ammo_type and ammo < ammo_item.ammo_amount:
+		ammo = ammo_item.ammo_amount
+		return true
+	
+	return false
+
 func on_equipped(player: Creature):
 	player.set_item_label(str(ammo))
 	GlobalAudio.play(reload_sound, 1.0, randf_range(0.95, 1.0))

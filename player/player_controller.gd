@@ -169,13 +169,9 @@ func _input(event):
 				
 				if look_item is AmmoItem and $Camera/HoldAnchor.get_child_count() == 1 and $Camera/HoldAnchor.get_child(0) is GunItem:
 					
-					# if you click on an ammo_item in the backpack
-					# and you're holding a weapon, if it accepts the
-					# corresponding ammo type, it reloads it
 					var gun: GunItem = $Camera/HoldAnchor.get_child(0)
 					
-					if gun.accepted_ammo_type == look_item.ammo_type:
-						gun.ammo = look_item.ammo_amount
+					if gun.attempt_reload(look_item):
 						look_item.queue_free()
 						gun.on_equipped(self) # trigger gun reequip (updates ammo display and plays sound)
 					
