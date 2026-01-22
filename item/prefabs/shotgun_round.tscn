@@ -1,0 +1,38 @@
+[gd_scene load_steps=9 format=3 uid="uid://djaoewoi8oqko"]
+
+[ext_resource type="Script" uid="uid://q3x3yi7mx224" path="res://item/ammo_item.gd" id="1_rmcbd"]
+[ext_resource type="Shader" uid="uid://b4re70be6kgm1" path="res://item/item.gdshader" id="2_kabl2"]
+[ext_resource type="Texture2D" uid="uid://creoep7qout4l" path="res://item/models/shotgun_round.png" id="3_v4jle"]
+[ext_resource type="Texture2D" uid="uid://prlp8wl6cxh2" path="res://item/models/shotgun_round_metallic.png" id="4_rmcbd"]
+[ext_resource type="Texture2D" uid="uid://lipl62cpdrek" path="res://item/models/bandage_reflective.png" id="5_kabl2"]
+[ext_resource type="ArrayMesh" uid="uid://casrh7m885oan" path="res://item/models/shotgun_round.obj" id="6_5cd8i"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lceks"]
+height = 0.115
+radius = 0.023
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gbfbk"]
+render_priority = 0
+shader = ExtResource("2_kabl2")
+shader_parameter/tex = ExtResource("3_v4jle")
+shader_parameter/tex_reflective = ExtResource("5_kabl2")
+shader_parameter/tex_metallic = ExtResource("4_rmcbd")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/highlight_amt = 0.0
+
+[node name="ShotgunRound" type="RigidBody3D"]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("1_rmcbd")
+ammo_type = "shotgun"
+ammo_amount = 1
+item_name = "Shotgun Round"
+item_description = "Contains 15 rounds of pistol ammunition."
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_lceks")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_gbfbk")
+mesh = ExtResource("6_5cd8i")
+skeleton = NodePath("../..")
