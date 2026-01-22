@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://bg8edrh3kqy4f"]
 
 [ext_resource type="Script" uid="uid://bqs45nxx7a27c" path="res://item/gun_item.gd" id="1_o6185"]
-[ext_resource type="AudioStream" uid="uid://ctary5fgl30n8" path="res://item/sfx/pistol_gunshot.wav" id="2_iep45"]
+[ext_resource type="AudioStream" uid="uid://baxvpop08pqjt" path="res://item/sfx/shotgun_gunshot.wav" id="2_7p77q"]
 [ext_resource type="AudioStream" uid="uid://bl13qyy6li4mh" path="res://item/sfx/pistol_dryfire.wav" id="3_6p27s"]
-[ext_resource type="AudioStream" uid="uid://bkyhasnpcqjs7" path="res://item/sfx/pistol_reload.wav" id="4_v0dmb"]
+[ext_resource type="AudioStream" uid="uid://c7v4a3leju8gu" path="res://item/sfx/shotgun_reload.wav" id="4_fu3cr"]
 [ext_resource type="Shader" uid="uid://b4re70be6kgm1" path="res://item/item.gdshader" id="5_ix5dl"]
 [ext_resource type="ArrayMesh" uid="uid://bol04kb4mee6p" path="res://item/models/shotgun.obj" id="8_o6185"]
 [ext_resource type="Texture2D" uid="uid://tib8q502njso" path="res://item/models/muzzle_flash.png" id="9_0wgg5"]
@@ -43,9 +43,9 @@ size = Vector2(0.5, 0.5)
 [node name="Shotgun" type="RigidBody3D"]
 transform = Transform3D(-4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 0.9999999, 0, 0, 0)
 script = ExtResource("1_o6185")
-gunshot_sound = ExtResource("2_iep45")
+gunshot_sound = ExtResource("2_7p77q")
 dryfire_sound = ExtResource("3_6p27s")
-reload_sound = ExtResource("4_v0dmb")
+reload_sound = ExtResource("4_fu3cr")
 shots_per_second = 1.0
 ammo = 1
 damage = 105
