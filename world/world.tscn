@@ -69,8 +69,7 @@ material_override = SubResource("StandardMaterial3D_fj7yv")
 mesh = SubResource("PlaneMesh_f3sb7")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.9622453, -0.073025644, -0.2622049, 0.19208397, -0.5003301, 0.84425914, -0.19284153, -0.86274976, -0.46741343, 0, 0, 0)
-shadow_enabled = true
+transform = Transform3D(1.0000004, 0, 0, 0, -0.88529646, 0.46502754, 0, -0.46502742, -0.88529664, 0, 0, 0)
 shadow_bias = 0.03
 shadow_blur = 2.25
 
