@@ -9,8 +9,8 @@ uniform vec3 color : source_color = vec3(1.0, 1.0, 1.0);
 uniform float highlight_amt : hint_range(0.0, 1.0);
 
 void fragment() {
-	ROUGHNESS = texture(tex_reflective, UV).r;
-	SPECULAR = 1.0 - ROUGHNESS;
+	SPECULAR = texture(tex_reflective, UV).r;
+	ROUGHNESS = 1.0 - SPECULAR;
 	METALLIC = 1.0 - texture(tex_metallic, UV).r;
 	
 	vec4 f = INV_VIEW_MATRIX * vec4(VERTEX, 1.0);

@@ -1,17 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://dn24u8g4s3cgo"]
+[gd_scene load_steps=9 format=3 uid="uid://dn24u8g4s3cgo"]
 
 [ext_resource type="Script" uid="uid://q3x3yi7mx224" path="res://item/ammo_item.gd" id="1_hjbpf"]
 [ext_resource type="Shader" uid="uid://b4re70be6kgm1" path="res://item/item.gdshader" id="2_tthoi"]
-[ext_resource type="ArrayMesh" uid="uid://eiqx334ur2nd" path="res://item/models/pistol_magazine.obj" id="3_brhrd"]
+[ext_resource type="Texture2D" uid="uid://bniyf5kylkvp2" path="res://item/models/pistol_magazine.png" id="3_brhrd"]
+[ext_resource type="ArrayMesh" uid="uid://cgpbmlepwdbp3" path="res://item/models/hc_pistol_magazine.obj" id="3_hjbpf"]
+[ext_resource type="Texture2D" uid="uid://co7vx313os5ps" path="res://item/models/pistol_magazine_metallic.png" id="4_7d6op"]
+[ext_resource type="Texture2D" uid="uid://dmux7m3knse2d" path="res://item/models/pistol_magazine_reflective.png" id="5_7d6op"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dwbse"]
-size = Vector3(0.088, 0.758, 0.182)
+size = Vector3(0.088, 0.728, 0.182)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gbfbk"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pv53s"]
 render_priority = 0
 shader = ExtResource("2_tthoi")
-shader_parameter/color = Color(0.15127608, 0.15127608, 0.15127608, 1)
-shader_parameter/metallic = 0.0
+shader_parameter/tex = ExtResource("3_brhrd")
+shader_parameter/tex_reflective = ExtResource("5_7d6op")
+shader_parameter/tex_metallic = ExtResource("4_7d6op")
+shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/highlight_amt = 0.0
 
 [node name="HCPistolMagazine" type="RigidBody3D"]
@@ -22,11 +27,10 @@ item_name = "High-Capacity Pistol Magazine"
 item_description = "Contains 30 rounds of pistol ammunition."
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2043416e-09, -0.05686426, 0.024871826)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.055, 0.025)
 shape = SubResource("BoxShape3D_dwbse")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_gbfbk")
-mesh = ExtResource("3_brhrd")
+material_override = SubResource("ShaderMaterial_pv53s")
+mesh = ExtResource("3_hjbpf")
 skeleton = NodePath("../..")

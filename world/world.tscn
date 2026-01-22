@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://deknyv4y0bmnx"]
+[gd_scene load_steps=15 format=3 uid="uid://deknyv4y0bmnx"]
 
 [ext_resource type="Texture2D" uid="uid://c2q633o6tv2f0" path="res://world/debug.png" id="1_fn3g3"]
 [ext_resource type="Script" uid="uid://bqn3p1o4312am" path="res://world/zombie_spawner.gd" id="2_sc4t8"]
@@ -8,6 +8,23 @@
 [ext_resource type="PackedScene" uid="uid://bt8egdmyuyrio" path="res://item/prefabs/bandage.tscn" id="6_ov2xu"]
 [ext_resource type="PackedScene" uid="uid://cjo6hfryoxnbh" path="res://item/prefabs/medicine.tscn" id="7_sc4t8"]
 [ext_resource type="PackedScene" uid="uid://dn24u8g4s3cgo" path="res://item/prefabs/hc_pistol_magazine.tscn" id="8_ai45w"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ai45w"]
+sky_top_color = Color(0.3340785, 0.5565081, 0.63085485, 1)
+sky_horizon_color = Color(0.5845084, 0.7288101, 0.8069863, 1)
+sky_curve = 0.05303283
+ground_horizon_color = Color(0.58431375, 0.7294118, 0.80784315, 1)
+sun_curve = 0.11367909
+
+[sub_resource type="Sky" id="Sky_4papg"]
+sky_material = SubResource("ProceduralSkyMaterial_ai45w")
+
+[sub_resource type="Environment" id="Environment_fyhu2"]
+background_mode = 2
+sky = SubResource("Sky_4papg")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.4
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gv5m4"]
 
@@ -19,6 +36,9 @@ uv1_scale = Vector3(50, 50, 50)
 size = Vector2(100, 100)
 
 [node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fyhu2")
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)

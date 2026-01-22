@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5et8cc5v2pmi"]
+[gd_scene load_steps=9 format=3 uid="uid://b5et8cc5v2pmi"]
 
 [ext_resource type="Script" uid="uid://q3x3yi7mx224" path="res://item/ammo_item.gd" id="1_xe43p"]
 [ext_resource type="Shader" uid="uid://b4re70be6kgm1" path="res://item/item.gdshader" id="2_bte3w"]
 [ext_resource type="Texture2D" uid="uid://bniyf5kylkvp2" path="res://item/models/pistol_magazine.png" id="3_v2gf5"]
 [ext_resource type="ArrayMesh" uid="uid://eiqx334ur2nd" path="res://item/models/pistol_magazine.obj" id="3_ytp7k"]
 [ext_resource type="Texture2D" uid="uid://co7vx313os5ps" path="res://item/models/pistol_magazine_metallic.png" id="4_it1is"]
+[ext_resource type="Texture2D" uid="uid://dmux7m3knse2d" path="res://item/models/pistol_magazine_reflective.png" id="5_2a7lf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dwbse"]
 size = Vector3(0.087890625, 0.37948608, 0.18231201)
@@ -13,7 +14,7 @@ size = Vector3(0.087890625, 0.37948608, 0.18231201)
 render_priority = 0
 shader = ExtResource("2_bte3w")
 shader_parameter/tex = ExtResource("3_v2gf5")
-shader_parameter/tex_reflective = ExtResource("4_it1is")
+shader_parameter/tex_reflective = ExtResource("5_2a7lf")
 shader_parameter/tex_metallic = ExtResource("4_it1is")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/highlight_amt = 0.0
