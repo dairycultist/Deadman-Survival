@@ -228,6 +228,7 @@ func _input(event):
 				item.set_rigidbody(true)
 				item.reparent(ROOT_NODE)
 				item.on_deequipped(self)
+				set_item_label("")
 		
 		else:
 			
