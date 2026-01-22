@@ -26,13 +26,12 @@ script = ExtResource("1_rmcbd")
 ammo_type = "shotgun"
 ammo_amount = 1
 item_name = "Shotgun Round"
-item_description = "Contains 15 rounds of pistol ammunition."
+item_description = "This 12-gauge breacher round contains a slug designed to break through door locks and hinges."
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_lceks")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_gbfbk")
 mesh = ExtResource("6_5cd8i")
 skeleton = NodePath("../..")
