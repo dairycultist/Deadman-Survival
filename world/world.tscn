@@ -35,7 +35,6 @@ ambient_light_energy = 0.4
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fj7yv"]
 albedo_texture = ExtResource("1_ai45w")
 normal_enabled = true
-normal_scale = 3.5
 normal_texture = ExtResource("2_4papg")
 uv1_scale = Vector3(10, 10, 10)
 
@@ -70,6 +69,7 @@ mesh = SubResource("PlaneMesh_f3sb7")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1.0000004, 0, 0, 0, -0.88529646, 0.46502754, 0, -0.46502742, -0.88529664, 0, 0, 0)
+shadow_enabled = true
 shadow_bias = 0.03
 shadow_blur = 2.25
 
@@ -132,6 +132,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6578617, 5.1, -1.019884)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.722875, 5.1, -1.6076338)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2322521, 6.747595, 3.0324497)
+transform = Transform3D(0.03943224, -0.08094825, -0.9959381, -0.08692643, -0.99321276, 0.07728495, -0.99543417, 0.083525896, -0.046201117, 0.86995053, 6.7757096, 3.0156426)
 material_override = SubResource("ShaderMaterial_ov2xu")
 mesh = SubResource("SphereMesh_4papg")

@@ -26,9 +26,7 @@ void fragment() {
 	
 	float fac = smoothstep(-blend, blend, normal.y);
 	
-	vec3 snow_c = mix(texture(snow_albedo, UV).rgb, vec3(1.), fac * 0.5);
-	
-	ALBEDO    = mix(vec3(0.), snow_c, fac);
+	ALBEDO    = mix(vec3(0.), texture(snow_albedo, UV).rgb, fac);
 	SPECULAR  = mix(0.5, 1., fac);
 	ROUGHNESS = mix(1.0, .7, fac);
 	NORMAL    = mix(NORMAL, snow_n, fac);
