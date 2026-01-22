@@ -10,10 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://dn24u8g4s3cgo" path="res://item/prefabs/hc_pistol_magazine.tscn" id="8_ai45w"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ai45w"]
-sky_top_color = Color(0.3340785, 0.5565081, 0.63085485, 1)
-sky_horizon_color = Color(0.5845084, 0.7288101, 0.8069863, 1)
-sky_curve = 0.05303283
-ground_horizon_color = Color(0.58431375, 0.7294118, 0.80784315, 1)
+sky_top_color = Color(0.2996212, 0.5909847, 0.8508276, 1)
+sky_horizon_color = Color(0.6084065, 0.7247295, 0.8060412, 1)
+sky_curve = 0.17230427
+ground_horizon_color = Color(0.60784316, 0.7254902, 0.80784315, 1)
 sun_curve = 0.11367909
 
 [sub_resource type="Sky" id="Sky_4papg"]
@@ -52,6 +52,7 @@ mesh = SubResource("PlaneMesh_f3sb7")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.70710677, 0.49999997, -0.49999997, 0, 0.7071068, 0.7071068, 0.7071068, -0.5, 0.5, 0, 0, 0)
+light_energy = 1.5
 
 [node name="ZombieSpawner" type="Node3D" parent="." node_paths=PackedStringArray("spawning_surface", "spawn_center")]
 script = ExtResource("2_sc4t8")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bxbcos0w0waue"]
+[gd_scene load_steps=16 format=3 uid="uid://bxbcos0w0waue"]
 
 [ext_resource type="Script" uid="uid://bqs45nxx7a27c" path="res://item/gun_item.gd" id="1_uhhsj"]
 [ext_resource type="AudioStream" uid="uid://ctary5fgl30n8" path="res://item/sfx/pistol_gunshot.wav" id="2_8jb7s"]
@@ -6,16 +6,27 @@
 [ext_resource type="ArrayMesh" uid="uid://cp4or3mbrj0nd" path="res://item/models/pistol.obj" id="3_e40hb"]
 [ext_resource type="AudioStream" uid="uid://bl13qyy6li4mh" path="res://item/sfx/pistol_dryfire.wav" id="3_jiblw"]
 [ext_resource type="AudioStream" uid="uid://bkyhasnpcqjs7" path="res://item/sfx/pistol_reload.wav" id="4_pe4aj"]
+[ext_resource type="Texture2D" uid="uid://5qfoxlwneynw" path="res://item/models/pistol.png" id="6_00olf"]
 [ext_resource type="Texture2D" uid="uid://tib8q502njso" path="res://item/models/muzzle_flash.png" id="6_eylw4"]
+[ext_resource type="Texture2D" uid="uid://cip5xp24wbnyh" path="res://item/models/pistol_reflective.png" id="7_indtt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_036b0"]
 size = Vector3(0.087890625, 0.4142456, 0.60009766)
 
+[sub_resource type="Curve" id="Curve_00olf"]
+_data = [Vector2(0.3644068, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_indtt"]
+curve = SubResource("Curve_00olf")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pkg7o"]
 render_priority = 0
 shader = ExtResource("2_47bfx")
-shader_parameter/color = Color(0.15127608, 0.15127608, 0.15127608, 1)
-shader_parameter/metallic = 0.0
+shader_parameter/tex = ExtResource("6_00olf")
+shader_parameter/tex_reflective = ExtResource("7_indtt")
+shader_parameter/tex_metallic = SubResource("CurveTexture_indtt")
+shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/highlight_amt = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pe4aj"]
