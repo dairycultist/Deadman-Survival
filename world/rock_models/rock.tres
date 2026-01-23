@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://cxccy4kv3kj5g"]
+
+[ext_resource type="Shader" uid="uid://87mud7hl4ay0" path="res://world/snowy.gdshader" id="1_nxbah"]
+[ext_resource type="Texture2D" uid="uid://dsjqshp2jdno5" path="res://world/slatecliffrock/slatecliffrock.png" id="2_2e7t6"]
+[ext_resource type="Texture2D" uid="uid://hpn0atemef24" path="res://world/slatecliffrock/slatecliffrock_normal.png" id="3_dd0i2"]
+[ext_resource type="Texture2D" uid="uid://dlf2tx4nidwo" path="res://world/snow.png" id="4_imq8m"]
+[ext_resource type="Texture2D" uid="uid://b75oji2aufbia" path="res://world/snow_normal.png" id="5_fiiie"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_nxbah")
+shader_parameter/albedo = ExtResource("2_2e7t6")
+shader_parameter/normal = ExtResource("3_dd0i2")
+shader_parameter/snow_albedo = ExtResource("4_imq8m")
+shader_parameter/snow_normal = ExtResource("5_fiiie")
+shader_parameter/blend = 0.41
+shader_parameter/bias = 0.18

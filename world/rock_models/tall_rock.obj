@@ -1,6 +1,5 @@
 # Blender 4.5.5 LTS
 # www.blender.org
-mtllib rock.mtl
 o Icosphere
 v -1.094532 -0.724518 0.712272
 v -1.125679 -0.487732 0.652937

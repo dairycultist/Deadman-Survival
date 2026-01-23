@@ -1,6 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://deknyv4y0bmnx"]
+[gd_scene load_steps=22 format=3 uid="uid://deknyv4y0bmnx"]
 
 [ext_resource type="Texture2D" uid="uid://dlf2tx4nidwo" path="res://world/snow.png" id="1_ai45w"]
+[ext_resource type="Material" uid="uid://cxccy4kv3kj5g" path="res://world/rock_models/rock.tres" id="1_dqqhb"]
 [ext_resource type="Texture2D" uid="uid://b75oji2aufbia" path="res://world/snow_normal.png" id="2_4papg"]
 [ext_resource type="Script" uid="uid://bqn3p1o4312am" path="res://world/zombie_spawner.gd" id="2_sc4t8"]
 [ext_resource type="PackedScene" uid="uid://ctp0v8b07jg7a" path="res://player/player.tscn" id="3_ai45w"]
@@ -9,10 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bt8egdmyuyrio" path="res://item/prefabs/bandage.tscn" id="6_ov2xu"]
 [ext_resource type="PackedScene" uid="uid://cjo6hfryoxnbh" path="res://item/prefabs/medicine.tscn" id="7_sc4t8"]
 [ext_resource type="PackedScene" uid="uid://dn24u8g4s3cgo" path="res://item/prefabs/hc_pistol_magazine.tscn" id="8_ai45w"]
-[ext_resource type="Shader" uid="uid://87mud7hl4ay0" path="res://world/snowy.gdshader" id="10_fyhu2"]
-[ext_resource type="Texture2D" uid="uid://dsjqshp2jdno5" path="res://world/slatecliffrock/slatecliffrock.png" id="11_mad0u"]
-[ext_resource type="Texture2D" uid="uid://hpn0atemef24" path="res://world/slatecliffrock/slatecliffrock_normal.png" id="12_ocfjn"]
-[ext_resource type="ArrayMesh" uid="uid://brkr1tlm4uoj3" path="res://world/rock.obj" id="13_ocfjn"]
+[ext_resource type="ArrayMesh" uid="uid://brkr1tlm4uoj3" path="res://world/rock_models/tall_rock.obj" id="13_ocfjn"]
+[ext_resource type="ArrayMesh" uid="uid://vo2b2ickpvpw" path="res://world/rock_models/flat_rock.obj" id="14_b2suy"]
 [ext_resource type="PackedScene" uid="uid://bg8edrh3kqy4f" path="res://item/prefabs/shotgun.tscn" id="14_dqqhb"]
 [ext_resource type="PackedScene" uid="uid://djaoewoi8oqko" path="res://item/prefabs/shotgun_round.tscn" id="15_b2suy"]
 
@@ -39,16 +38,6 @@ ambient_light_energy = 0.4
 height = 4.164
 radius = 1.35
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ov2xu"]
-render_priority = 0
-shader = ExtResource("10_fyhu2")
-shader_parameter/albedo = ExtResource("11_mad0u")
-shader_parameter/normal = ExtResource("12_ocfjn")
-shader_parameter/snow_albedo = ExtResource("1_ai45w")
-shader_parameter/snow_normal = ExtResource("2_4papg")
-shader_parameter/blend = 0.41
-shader_parameter/bias = 0.18
-
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gv5m4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fj7yv"]
@@ -68,13 +57,19 @@ environment = SubResource("Environment_fyhu2")
 [node name="Rock" type="StaticBody3D" parent="."]
 transform = Transform3D(-0.26213884, 0, -0.9650303, 0, 1.0000006, 0, 0.9650308, 0, -0.26213872, 2.4698987, 5.775709, 5.8936605)
 
+[node name="FlatRock" type="MeshInstance3D" parent="Rock"]
+transform = Transform3D(-0.26213852, 0, 0.96502966, 0, 0.9999994, 0, -0.96503013, 0, -0.26213863, -1.741399, -0.48330832, -0.34337473)
+material_override = ExtResource("1_dqqhb")
+mesh = ExtResource("14_b2suy")
+skeleton = NodePath("../..")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Rock"]
 transform = Transform3D(1, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 1, 0, 0.45, 0)
 shape = SubResource("CylinderShape3D_ocfjn")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Rock"]
+[node name="TallRock" type="MeshInstance3D" parent="Rock"]
 transform = Transform3D(1, 0, -5.9604645e-08, 0, 1, 0, 5.9604645e-08, 0, 1, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_ov2xu")
+material_override = ExtResource("1_dqqhb")
 mesh = ExtResource("13_ocfjn")
 skeleton = NodePath("../..")
 
