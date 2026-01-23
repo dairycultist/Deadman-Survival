@@ -126,16 +126,16 @@ func _process(delta: float) -> void:
 		$ItemHover.size     = rect.size
 		$ItemHover.visible  = true
 		
-		$ItemTooltip/Text.text = "[font_size=28][color=white][b]" + look_item.item_name + "[/b][br][/color][color=gray][i]" + look_item.item_description + "[/i][/color][/font_size]"
+		$ItemTooltip/Text.text = "[font_size=28][color=white][b]" + look_item.item_name + "[/b][br][/color][color=gray][i]" + look_item.item_description + "[/i][/color]"
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			# in-world picking up
-			$ItemTooltip/Text.text += "[color=gray][br][br]E pick up[/color]"
+			$ItemTooltip/Text.text += "[color=dim_gray][br]E pick up[/color][/font_size]"
 		elif look_item is AmmoItem and $Camera/HoldAnchor.get_child_count() == 1 and $Camera/HoldAnchor.get_child(0) is GunItem and $Camera/HoldAnchor.get_child(0).can_reload(look_item):
 			# reloadable ammo
-			$ItemTooltip/Text.text += "[color=gray][br][br]LMB reload · RMB drop[/color]"
+			$ItemTooltip/Text.text += "[color=dim_gray][br]LMB reload · RMB drop[/color][/font_size]"
 		else:
 			# equippable item
-			$ItemTooltip/Text.text += "[color=gray][br][br]LMB equip · RMB drop[/color]"
+			$ItemTooltip/Text.text += "[color=dim_gray][br]LMB equip · RMB drop[/color][/font_size]"
 		
 		$ItemTooltip.position  = rect.position + Vector2(rect.size.x + $ItemHover.border_width / 2, -$ItemHover.border_width / 2)
 		$ItemTooltip.size      = $ItemTooltip/Text.size + Vector2(20.0, 20.0)
@@ -150,6 +150,8 @@ func _process(delta: float) -> void:
 		$ItemTooltip/Text.text = ""
 
 func _input(event):
+	
+	var equipped_item: Item = $Camera/HoldAnchor.get_child(0) if $Camera/HoldAnchor.get_child_count() == 1 else null
 	
 	if event.is_action_pressed("inventory"):
 		
@@ -176,8 +178,6 @@ func _input(event):
 		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 			
 			if look_item:
-				
-				var equipped_item: Item = $Camera/HoldAnchor.get_child(0) if $Camera/HoldAnchor.get_child_count() == 1 else null
 				
 				# reload
 				if look_item is AmmoItem and equipped_item is GunItem and equipped_item.attempt_reload(look_item):
@@ -223,24 +223,14 @@ func _input(event):
 				look_item.reparent(ROOT_NODE)
 				look_item.on_deequipped(self)
 	
-	elif event.is_action_pressed("drop"): # drop from hand or inventory
+	elif event.is_action_pressed("drop"): # drop from hand
 		
-		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			
-			var item: Item = $Camera/HoldAnchor.get_child(0)
-			
-			if item:
-				item.set_rigidbody(true)
-				item.reparent(ROOT_NODE)
-				item.on_deequipped(self)
-				set_item_label("")
-		
-		else:
-			
-			if look_item:
-				look_item.set_rigidbody(true)
-				look_item.reparent(ROOT_NODE)
-				look_item.on_deequipped(self)
+		if equipped_item:
+			equipped_item.set_rigidbody(true)
+			equipped_item.apply_central_force(-$Camera.basis.z * 100.0)
+			equipped_item.reparent(ROOT_NODE)
+			equipped_item.on_deequipped(self)
+			set_item_label("")
 	
 	elif event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		
