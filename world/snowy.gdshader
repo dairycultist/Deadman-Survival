@@ -22,11 +22,13 @@ void vertex() {
 }
 
 vec3 triplanar_tritexture(sampler2D tex, vec3 d, vec3 n) {
-	n = n*n;
-    vec3 x = texture(tex, d.zy).xyz;
-    vec3 y = texture(tex, d.xz).xyz;
-    vec3 z = texture(tex, d.xy).xyz;
-    return (x*n.x + y*n.y + z*n.z)/(n.x+n.y+n.z);
+	
+	n = n * n;
+    return (
+		texture(tex, d.zy).xyz * n.x +
+		texture(tex, d.xz).xyz * n.y +
+		texture(tex, d.xy).xyz * n.z
+	) / (n.x + n.y + n.z);
 }
 
 void fragment() {
@@ -34,13 +36,11 @@ void fragment() {
 	vec3 world_vertex = (INV_VIEW_MATRIX * vec4(VERTEX, 1.)).xyz;
 	vec3 world_normal = (INV_VIEW_MATRIX * vec4(NORMAL, 0.)).xyz;
 	
-	vec2 snow_uv = (INV_VIEW_MATRIX * vec4(VERTEX, 1.)).xz * 0.2;
-	
 	vec3      a = triplanar_tritexture(albedo, world_vertex, world_normal).rgb;
-	vec3 snow_a = texture(snow_albedo, snow_uv).rgb;
+	vec3 snow_a = triplanar_tritexture(snow_albedo, world_vertex * 0.2, world_normal).rgb;
 	
 	vec3      n = TBN * normalize(triplanar_tritexture(normal, world_vertex, world_normal).xyz * 2.0 - 1.0);
-	vec3 snow_n = TBN * normalize(texture(snow_normal, snow_uv).xyz * 2.0 - 1.0);
+	vec3 snow_n = TBN * normalize(triplanar_tritexture(snow_normal, world_vertex * 0.2, world_normal).xyz * 2.0 - 1.0);
 	
 	float fac = smoothstep(-blend + bias, blend + bias, (INV_VIEW_MATRIX * vec4(n, 0.0)).y);
 	
