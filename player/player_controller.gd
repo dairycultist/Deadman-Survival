@@ -126,16 +126,19 @@ func _process(delta: float) -> void:
 		$ItemHover.size     = rect.size
 		$ItemHover.visible  = true
 		
-		$ItemTooltip/Text.text = "[font_size=28][color=white][b]" + look_item.item_name + "[/b][br][/color][color=gray][i]" + look_item.item_description + "[/i][/color]"
+		$ItemTooltip/Text.text = "[font_size=28][color=white][b]" + look_item.item_name + "[/b][br][/color][color=gray][i]" + look_item.item_description + "[/i][/color][color=dim_gray][br]"
+		
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			# in-world picking up
-			$ItemTooltip/Text.text += "[color=dim_gray][br]E pick up[/color][/font_size]"
+			$ItemTooltip/Text.text += "E pick up"
 		elif look_item is AmmoItem and $Camera/HoldAnchor.get_child_count() == 1 and $Camera/HoldAnchor.get_child(0) is GunItem and $Camera/HoldAnchor.get_child(0).can_reload(look_item):
 			# reloadable ammo
-			$ItemTooltip/Text.text += "[color=dim_gray][br]LMB reload · RMB drop[/color][/font_size]"
+			$ItemTooltip/Text.text += str("LMB reload ", $Camera/HoldAnchor.get_child(0).base_item_name.to_lower(), " · RMB drop")
 		else:
 			# equippable item
-			$ItemTooltip/Text.text += "[color=dim_gray][br]LMB equip · RMB drop[/color][/font_size]"
+			$ItemTooltip/Text.text += "LMB equip · RMB drop"
+		
+		$ItemTooltip/Text.text += "[/color][/font_size]"
 		
 		$ItemTooltip.position  = rect.position + Vector2(rect.size.x + $ItemHover.border_width / 2, -$ItemHover.border_width / 2)
 		$ItemTooltip.size      = $ItemTooltip/Text.size + Vector2(20.0, 20.0)
