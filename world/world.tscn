@@ -73,10 +73,11 @@ shader_parameter/normal = ExtResource("7_p2iis")
 shader_parameter/snow_albedo = ExtResource("8_aysyn")
 shader_parameter/snow_normal = ExtResource("9_o1net")
 shader_parameter/blend = 0.11
-shader_parameter/bias = 0.69
+shader_parameter/bias = 0.75
 shader_parameter/scale = 0.1
 shader_parameter/snow_scale = 0.2
-shader_parameter/snow_yzero_fadeout = 5.0
+shader_parameter/snow_yzero_fadeout_height = 3.54
+shader_parameter/snow_yzero_fadeout_rate = 0.26
 
 [node name="World" type="Node3D"]
 

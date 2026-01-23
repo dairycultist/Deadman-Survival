@@ -11,7 +11,8 @@ uniform float bias = 0.0;
 uniform float scale = 1.0;
 uniform float snow_scale = 0.2;
 
-uniform float snow_yzero_fadeout = 2.0;
+uniform float snow_yzero_fadeout_height = 2.0;
+uniform float snow_yzero_fadeout_rate = 0.5;
 
 // https://godotforums.org/d/27986-custom-normal-map-shader/8
 varying mat3 TBN; // from tangent to view
@@ -47,10 +48,10 @@ void fragment() {
 	vec3      n = TBN * normalize(triplanar_tritexture(normal,      world_vertex * scale,      world_normal).xyz * 2.0 - 1.0);
 	vec3 snow_n = TBN * normalize(triplanar_tritexture(snow_normal, world_vertex * snow_scale, world_normal).xyz * 2.0 - 1.0);
 	
-	float fac = smoothstep(-blend + bias, blend + bias, (INV_VIEW_MATRIX * vec4(n, 0.0)).y);
-	
 	// fade out snow from being close to y=0
-	fac -= smoothstep(1.0, 0.0, world_vertex.y / snow_yzero_fadeout) * fac;
+	float fade = smoothstep(1.0, 0.0, world_vertex.y / snow_yzero_fadeout_height) * snow_yzero_fadeout_rate;
+	
+	float fac = smoothstep(-blend + bias + fade, blend + bias + fade, (INV_VIEW_MATRIX * vec4(n, 0.0)).y);
 	
 	ALBEDO    = mix(a, snow_a, fac);
 	SPECULAR  = mix(0.5, 0.7, fac);
