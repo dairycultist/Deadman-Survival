@@ -1,7 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://deknyv4y0bmnx"]
+[gd_scene load_steps=26 format=3 uid="uid://deknyv4y0bmnx"]
 
 [ext_resource type="Shader" uid="uid://dm3nlfpm3wmwq" path="res://world/water.gdshader" id="1_b2suy"]
 [ext_resource type="Material" uid="uid://cxccy4kv3kj5g" path="res://world/rock_models/rock.tres" id="1_dqqhb"]
+[ext_resource type="Script" uid="uid://v6bvaxd6qpxv" path="res://world/sea.gd" id="2_b2suy"]
+[ext_resource type="ArrayMesh" uid="uid://i3lib0o31eph" path="res://world/sea.obj" id="2_h8lre"]
 [ext_resource type="Script" uid="uid://bqn3p1o4312am" path="res://world/zombie_spawner.gd" id="2_sc4t8"]
 [ext_resource type="PackedScene" uid="uid://ctp0v8b07jg7a" path="res://player/player.tscn" id="3_ai45w"]
 [ext_resource type="Shader" uid="uid://87mud7hl4ay0" path="res://world/snowy.gdshader" id="5_m0cxt"]
@@ -17,7 +19,7 @@
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_dqqhb"]
 noise_type = 2
-frequency = 0.215
+frequency = 0.0962
 fractal_octaves = 2
 
 [sub_resource type="NoiseTexture3D" id="NoiseTexture3D_b2suy"]
@@ -28,16 +30,10 @@ seamless_blend_skirt = 0.4
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h8lre"]
 render_priority = 0
 shader = ExtResource("1_b2suy")
-shader_parameter/noise_scale = 0.82
+shader_parameter/noise_scale = 0.01
 shader_parameter/Noise = SubResource("NoiseTexture3D_b2suy")
 shader_parameter/Color = Color(0.10390095, 0.35036877, 0.31668842, 1)
 shader_parameter/water_depth = 1.0
-
-[sub_resource type="QuadMesh" id="QuadMesh_ocfjn"]
-size = Vector2(1000, 1000)
-subdivide_width = 200
-subdivide_depth = 200
-orientation = 1
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ai45w"]
 sky_top_color = Color(0.2996212, 0.5909847, 0.8508276, 1)
@@ -81,9 +77,11 @@ shader_parameter/snow_yzero_fadeout_rate = 0.26
 
 [node name="World" type="Node3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Sea" type="MeshInstance3D" parent="." node_paths=PackedStringArray("center")]
 material_override = SubResource("ShaderMaterial_h8lre")
-mesh = SubResource("QuadMesh_ocfjn")
+mesh = ExtResource("2_h8lre")
+script = ExtResource("2_b2suy")
+center = NodePath("../Player")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fyhu2")

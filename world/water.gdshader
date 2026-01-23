@@ -1,4 +1,5 @@
 shader_type spatial;
+render_mode world_vertex_coords;
 
 uniform sampler2D Depth : hint_depth_texture, repeat_disable, filter_nearest;
 uniform float noise_scale = 1.0;
@@ -7,23 +8,26 @@ uniform vec3 Color : source_color = vec3(1.0, 0.5, 0.0);
 
 uniform float water_depth = 2.0;
 
+varying vec3 sample_pos;
+
 void vertex() {
 
-	vec3 sample_pos = TIME * 0.01 + vec3(VERTEX.x, 0, VERTEX.z) * noise_scale;
+	// do displacement stuff
+	sample_pos = TIME * 0.01 + vec3(VERTEX.x, 0, VERTEX.z) * noise_scale;
 
 	float sample = texture(Noise, sample_pos).r;
 
 	VERTEX.y += sample;
+}
 
+void fragment() {
+	
 	float sample_px = texture(Noise, sample_pos + vec3( 0.05, 0, 0)).r;
 	float sample_nx = texture(Noise, sample_pos + vec3(-0.05, 0, 0)).r;
 	float sample_pz = texture(Noise, sample_pos + vec3(0, 0,  0.05)).r;
 	float sample_nz = texture(Noise, sample_pos + vec3(0, 0, -0.05)).r;
 
 	NORMAL = normalize(vec3((sample_nx - sample_px) / 2.0, 1.0, (sample_nz - sample_pz) / 2.0));
-}
-
-void fragment() {
 
 	METALLIC = 0.0;
 	SPECULAR = 0.2;
@@ -44,5 +48,8 @@ void fragment() {
 	float foam_fac = pow(smoothstep(0.0, water_depth * 0.2, linear_depth - linear_object_depth + sin(TIME * 2.0 + NORMAL.y * 10.0) * 0.05), 1.2);
 
 	ALBEDO = mix(vec3(1.0), Color, foam_fac);
-	ALPHA = (fade_fac + (1.0 - foam_fac) + 1.0) / 2.0;
+	
+	float depth_fade = (fade_fac + (1.0 - foam_fac) + 1.0) / 2.0;
+	float dist_fade = smoothstep(400.0, 500.0, distance((INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz, CAMERA_POSITION_WORLD));
+	ALPHA = mix(depth_fade, 0.0, dist_fade);
 }

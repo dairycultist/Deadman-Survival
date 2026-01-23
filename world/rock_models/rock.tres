@@ -17,3 +17,5 @@ shader_parameter/blend = 0.41
 shader_parameter/bias = 0.18
 shader_parameter/scale = 1.0
 shader_parameter/snow_scale = 0.2
+shader_parameter/snow_yzero_fadeout_height = 3.25
+shader_parameter/snow_yzero_fadeout_rate = 0.68
