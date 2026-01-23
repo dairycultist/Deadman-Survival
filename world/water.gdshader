@@ -7,6 +7,7 @@ uniform sampler3D Noise : repeat_enable;
 uniform vec3 Color : source_color = vec3(1.0, 0.5, 0.0);
 
 uniform float water_depth = 2.0;
+uniform float wave_height = 1.0;
 
 varying vec3 sample_pos;
 
@@ -17,7 +18,7 @@ void vertex() {
 
 	float sample = texture(Noise, sample_pos).r;
 
-	VERTEX.y += sample;
+	VERTEX.y += sample * wave_height;
 }
 
 void fragment() {
@@ -27,7 +28,7 @@ void fragment() {
 	float sample_pz = texture(Noise, sample_pos + vec3(0, 0,  0.05)).r;
 	float sample_nz = texture(Noise, sample_pos + vec3(0, 0, -0.05)).r;
 
-	NORMAL = normalize(vec3((sample_nx - sample_px) / 2.0, 1.0, (sample_nz - sample_pz) / 2.0));
+	NORMAL = (VIEW_MATRIX * vec4(normalize(vec3((sample_nx - sample_px) / 2.0, 1.0, (sample_nz - sample_pz) / 2.0)), 0.0)).xyz;
 
 	METALLIC = 0.0;
 	SPECULAR = 0.2;

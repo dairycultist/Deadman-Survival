@@ -30,10 +30,11 @@ seamless_blend_skirt = 0.4
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h8lre"]
 render_priority = 0
 shader = ExtResource("1_b2suy")
-shader_parameter/noise_scale = 0.01
+shader_parameter/noise_scale = 0.1
 shader_parameter/Noise = SubResource("NoiseTexture3D_b2suy")
 shader_parameter/Color = Color(0.10390095, 0.35036877, 0.31668842, 1)
 shader_parameter/water_depth = 1.0
+shader_parameter/wave_height = 1.0
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ai45w"]
 sky_top_color = Color(0.2996212, 0.5909847, 0.8508276, 1)
