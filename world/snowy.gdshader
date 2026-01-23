@@ -8,6 +8,9 @@ uniform sampler2D snow_normal : hint_normal;
 uniform float blend = 0.1;
 uniform float bias = 0.0;
 
+uniform float scale = 1.0;
+uniform float snow_scale = 0.2;
+
 // https://godotforums.org/d/27986-custom-normal-map-shader/8
 varying mat3 TBN; // from tangent to view
 
@@ -36,11 +39,11 @@ void fragment() {
 	vec3 world_vertex = (INV_VIEW_MATRIX * vec4(VERTEX, 1.)).xyz;
 	vec3 world_normal = (INV_VIEW_MATRIX * vec4(NORMAL, 0.)).xyz;
 	
-	vec3      a = triplanar_tritexture(albedo, world_vertex, world_normal).rgb;
-	vec3 snow_a = triplanar_tritexture(snow_albedo, world_vertex * 0.2, world_normal).rgb;
+	vec3      a = triplanar_tritexture(albedo,      world_vertex * scale,      world_normal).rgb;
+	vec3 snow_a = triplanar_tritexture(snow_albedo, world_vertex * snow_scale, world_normal).rgb;
 	
-	vec3      n = TBN * normalize(triplanar_tritexture(normal, world_vertex, world_normal).xyz * 2.0 - 1.0);
-	vec3 snow_n = TBN * normalize(triplanar_tritexture(snow_normal, world_vertex * 0.2, world_normal).xyz * 2.0 - 1.0);
+	vec3      n = TBN * normalize(triplanar_tritexture(normal,      world_vertex * scale,      world_normal).xyz * 2.0 - 1.0);
+	vec3 snow_n = TBN * normalize(triplanar_tritexture(snow_normal, world_vertex * snow_scale, world_normal).xyz * 2.0 - 1.0);
 	
 	float fac = smoothstep(-blend + bias, blend + bias, (INV_VIEW_MATRIX * vec4(n, 0.0)).y);
 	
