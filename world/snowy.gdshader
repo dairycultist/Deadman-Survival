@@ -25,9 +25,8 @@ void fragment() {
 	
 	vec2 snow_uv = (INV_VIEW_MATRIX * vec4(VERTEX, 1.)).xz * 0.2;
 	
-	vec3      n = TBN *  normalize(texture(     normal,      UV).xyz * 2.0 - 1.0);
-	vec3 snow_n = TBN * -normalize(texture(snow_normal, snow_uv).xyz * 2.0 - 1.0);
-	                 // ^ I think my normal texture is inverted
+	vec3      n = TBN * normalize(texture(     normal,      UV).xyz * 2.0 - 1.0);
+	vec3 snow_n = TBN * normalize(texture(snow_normal, snow_uv).xyz * 2.0 - 1.0);
 	
 	float fac = smoothstep(-blend + bias, blend + bias, (INV_VIEW_MATRIX * vec4(n, 0.0)).y);
 	
