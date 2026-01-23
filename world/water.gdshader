@@ -14,11 +14,14 @@ varying vec3 sample_pos;
 void vertex() {
 
 	// do displacement stuff
-	sample_pos = TIME * 0.01 + vec3(VERTEX.x, 0, VERTEX.z) * noise_scale;
+	sample_pos = vec3(VERTEX.x, 0, VERTEX.z) * noise_scale;
 
-	float sample = texture(Noise, sample_pos).r;
+	float sample = texture(Noise, TIME * 0.01 + sample_pos).r;
 
 	VERTEX.y += sample * wave_height;
+	
+	sample_pos *= 25.0;
+	sample_pos += TIME * 0.01;
 }
 
 void fragment() {
