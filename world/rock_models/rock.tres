@@ -15,3 +15,5 @@ shader_parameter/snow_albedo = ExtResource("4_imq8m")
 shader_parameter/snow_normal = ExtResource("5_fiiie")
 shader_parameter/blend = 0.41
 shader_parameter/bias = 0.18
+shader_parameter/scale = 1.0
+shader_parameter/snow_scale = 0.2
