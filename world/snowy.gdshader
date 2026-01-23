@@ -23,14 +23,16 @@ void vertex() {
 
 void fragment() {
 	
-	vec3      n = TBN *  normalize(texture(     normal, UV).xyz * 2.0 - 1.0);
-	vec3 snow_n = TBN * -normalize(texture(snow_normal, UV).xyz * 2.0 - 1.0);
+	vec2 snow_uv = (INV_VIEW_MATRIX * vec4(VERTEX, 1.)).xz * 0.2;
+	
+	vec3      n = TBN *  normalize(texture(     normal,      UV).xyz * 2.0 - 1.0);
+	vec3 snow_n = TBN * -normalize(texture(snow_normal, snow_uv).xyz * 2.0 - 1.0);
 	                 // ^ I think my normal texture is inverted
 	
 	float fac = smoothstep(-blend + bias, blend + bias, (INV_VIEW_MATRIX * vec4(n, 0.0)).y);
 	
-	ALBEDO    = mix(texture(albedo, UV).rgb, texture(snow_albedo, UV).rgb, fac);
-	SPECULAR  = mix(0.5, 1., fac);
-	ROUGHNESS = mix(1.0, .7, fac);
+	ALBEDO    = mix(texture(albedo, UV).rgb, texture(snow_albedo, snow_uv).rgb, fac);
+	SPECULAR  = mix(0.5, 0.7, fac);
+	ROUGHNESS = mix(1.0, 0.9, fac);
 	NORMAL    = mix(n, snow_n, fac);
 }
