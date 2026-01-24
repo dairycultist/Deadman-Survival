@@ -1,8 +1,15 @@
 # Deadman Survival
 
-- Zombie survival game
-  - Health, hunger, infection, cold meters?
-- Spawn in on a big abandoned military island in the arctic with military bases which you must loot for weapons
+End goal: In order to escape the island, you need to (in whatever order is most convenient):
+- get one of the greenhouses on the island operational (for food)
+- disable the radio jammer
+- restore power to the airfield (to turn on the radio + lights)
+- climb the airstrip watchtower to radio for aid
+and more? (discovering stuff and crafting and whatever)
+
+ideas:
+- Zombie survival game set on a big abandoned military island in the arctic with military bases which you must loot for weapons
+- Health, hunger, infection, cold meters?
 - Goal is to survive as long as possible as the zombies get stronger and stronger
   - When you first start playing you should lose quickly because you don't know what
 	you're doing; part of the fun should be gaining the skill needed to survive the
@@ -10,7 +17,6 @@
 	ramping up over time should challenge intermediate players who already are
 	comfortable in the early game, not the beginner players who don't know what
 	they're doing.
-  - Maybe have an end-goal, like "escape the island" by discovering stuff and crafting and whatever
 - You can craft (with scavenged crafting items) but you can't build, so you're constantly on foot
 - Limiting the player inventory discourages aggressive combat, encouraging resource management, tactical retreats, and risk-reward scenarios
 - I don't think we need chests; Base building is not a thing and looting can just be from items placed in the world
@@ -19,5 +25,3 @@ and it has dog ahh graphics and booba and the game gets a cult following then we
 like make a really messy but playable gaem then clean it up
 
 ![rocky shore](https://plus.unsplash.com/premium_photo-1675805016076-caf1ae9c3e27?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
-
-We can now add a map!
